@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/SAUCE-2/obsidian-lynx-kiro/compare/1.2.1...1.2.2) (2026-11-20)
+
+
+### Bug Fixes
+
+* stop Obsidian's theme review flagging masks and text-indent ([#29](https://github.com/SAUCE-2/obsidian-lynx-kiro/issues/29)) ([3ed2712](https://github.com/SAUCE-2/obsidian-lynx-kiro/commit/3ed2712ea108f2d964747b60196958854c74b7c9))
+
 ## [1.2.1](https://github.com/SAUCE-2/obsidian-lynx-kiro/compare/1.2.0...1.2.1) (2026-11-20)
 
 
