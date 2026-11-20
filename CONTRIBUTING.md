@@ -6,7 +6,7 @@ Thanks for helping out. Bug reports, fixes, and plugin support are all welcome.
 
 1. Fork the repo and create a branch.
 2. Edit `theme.css`. Colors live as `--kr-*` variables at the top; reuse them instead of adding new hex values.
-3. Test it: copy `theme.css` and `manifest.json` into `<vault>/.obsidian/themes/Lynx Kiro/` and check it in Obsidian (dark mode).
+3. Test it: copy `theme.css` and `manifest.json` into `<vault>/.obsidian/themes/Lynx Kiro/` and check it in Obsidian (dark and light mode).
 4. Open a pull request with before/after screenshots for any visual change.
 
 CI lints `theme.css` and checks `manifest.json`. To run the lint locally:

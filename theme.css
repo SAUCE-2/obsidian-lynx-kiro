@@ -1,4 +1,4 @@
-/* Lynx Kiro for Obsidian, ported from bastndev/Lynx-Theme-Pro (06_Lynx-Kiro-theme). Dark only. */
+/* Lynx Kiro for Obsidian, ported from bastndev/Lynx-Theme-Pro (06_Lynx-Kiro-theme). Dark and light. */
 
 .theme-dark {
   /* ---------- Palette ---------- */
@@ -165,3 +165,190 @@
 .theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
+
+/* ---------- Light mode ----------
+   Lynx Theme Pro has no light Kiro variant (its Lynx Light is a green/gray palette),
+   so this is a light lavender palette derived from the Kiro hues. Text colors meet
+   WCAG AA (4.5:1) on the editor, sidebar and code backgrounds. */
+.theme-light {
+  /* Palette: same names as dark mode, so "darkest" etc. are roles, not lightness */
+  --kr-bg-darkest: #ffffff;
+  --kr-bg-dark: #f3f0fa;
+  --kr-bg: #fbfaff;
+  --kr-bg-float: #ece7f7;
+  --kr-bg-highlight: #e2daf2;
+  --kr-border: #ddd5ec;
+  --kr-border-strong: #c9bde0;
+  --kr-comment: #766b8b;
+  --kr-muted: #6f6487;
+  --kr-faint: #665b7e;
+  --kr-fg-dark: #554a6b;
+  --kr-fg-mid: #43395a;
+  --kr-fg: #221b30;
+  --kr-accent: #7c3aed;
+  --kr-accent-strong: #6d28d9;
+  --kr-accent-hover: #5b21b6;
+  --kr-lavender: #6d28d9;
+  --kr-keyword: #8a2fc4;
+  --kr-func: #4f46e5;
+  --kr-blue: #0369a1;
+  --kr-teal: #0f766e;
+  --kr-green: #137336;
+  --kr-yellow: #8f5806;
+  --kr-peach: #b23c0b;
+  --kr-pink: #be185d;
+  --kr-magenta: #a21caf;
+  --kr-red: #c81e3a;
+
+  --color-base-00: var(--kr-bg-darkest);
+  --color-base-05: var(--kr-bg);
+  --color-base-10: var(--kr-bg);
+  --color-base-20: var(--kr-bg-dark);
+  --color-base-25: var(--kr-bg-float);
+  --color-base-30: var(--kr-border);
+  --color-base-35: var(--kr-border-strong);
+  --color-base-40: var(--kr-comment);
+  --color-base-50: var(--kr-muted);
+  --color-base-60: var(--kr-faint);
+  --color-base-70: var(--kr-fg-dark);
+  --color-base-100: var(--kr-fg);
+
+  --color-red: var(--kr-red);
+  --color-orange: var(--kr-peach);
+  --color-yellow: var(--kr-yellow);
+  --color-green: var(--kr-green);
+  --color-cyan: var(--kr-teal);
+  --color-blue: var(--kr-blue);
+  --color-purple: var(--kr-accent);
+  --color-pink: var(--kr-pink);
+
+  --accent-h: 262;
+  --accent-s: 83%;
+  --accent-l: 58%;
+  --color-accent: var(--kr-accent);
+  --color-accent-1: var(--kr-accent-strong);
+  --color-accent-2: var(--kr-accent-hover);
+
+  --background-primary: var(--kr-bg);
+  --background-primary-alt: var(--kr-bg-dark);
+  --background-secondary: var(--kr-bg-dark);
+  --background-secondary-alt: var(--kr-bg-float);
+  --background-modifier-border: var(--kr-border);
+  --background-modifier-border-hover: var(--kr-border-strong);
+  --background-modifier-border-focus: var(--kr-accent);
+  --background-modifier-hover: rgba(124, 58, 237, 0.07);
+  --background-modifier-active-hover: rgba(124, 58, 237, 0.14);
+  --background-modifier-form-field: var(--kr-bg-darkest);
+  --background-modifier-error: var(--kr-red);
+  --background-modifier-success: var(--kr-green);
+  --titlebar-background: var(--kr-bg-dark);
+  --titlebar-background-focused: var(--kr-bg-dark);
+  --ribbon-background: var(--kr-bg-dark);
+  --tab-container-background: var(--kr-bg-dark);
+  --divider-color: var(--kr-border);
+  --modal-background: var(--kr-bg);
+  --modal-border-color: var(--kr-border-strong);
+  --menu-background: var(--kr-bg);
+  --menu-border-color: var(--kr-border-strong);
+
+  --text-normal: var(--kr-fg);
+  --text-muted: var(--kr-fg-dark);
+  --text-faint: var(--kr-muted);
+  --text-accent: var(--kr-accent);
+  --text-accent-hover: var(--kr-accent-hover);
+  --text-on-accent: #ffffff;
+  --text-error: var(--kr-red);
+  --text-success: var(--kr-green);
+  --text-warning: var(--kr-yellow);
+  --text-selection: rgba(124, 58, 237, 0.2);
+  --text-highlight-bg: rgba(250, 204, 21, 0.35);
+  --interactive-accent: var(--kr-accent-strong);
+  --interactive-accent-hover: var(--kr-accent-hover);
+  --interactive-normal: var(--kr-bg-darkest);
+  --interactive-hover: var(--kr-bg-float);
+  --caret-color: var(--kr-accent);
+
+  --h1-color: var(--kr-keyword);
+  --h2-color: var(--kr-accent);
+  --h3-color: var(--kr-blue);
+  --h4-color: var(--kr-teal);
+  --h5-color: var(--kr-peach);
+  --h6-color: var(--kr-pink);
+  --bold-color: var(--kr-pink);
+  --italic-color: #1d4ed8;
+  --link-color: var(--kr-accent);
+  --link-color-hover: var(--kr-accent-hover);
+  --link-external-color: var(--kr-blue);
+  --link-external-color-hover: var(--kr-teal);
+  --link-unresolved-color: var(--kr-faint);
+  --tag-color: var(--kr-accent-strong);
+  --tag-background: rgba(124, 58, 237, 0.1);
+  --tag-background-hover: rgba(124, 58, 237, 0.16);
+  --blockquote-border-color: var(--kr-accent);
+  --hr-color: var(--kr-border-strong);
+  --checkbox-color: var(--kr-accent-strong);
+  --checkbox-border-color: var(--kr-faint);
+  --list-marker-color: var(--kr-muted);
+
+  --code-background: var(--kr-bg-float);
+  --code-normal: var(--kr-fg);
+  --code-comment: var(--kr-comment);
+  --code-keyword: var(--kr-keyword);
+  --code-function: var(--kr-func);
+  --code-string: var(--kr-teal);
+  --code-value: var(--kr-pink);
+  --code-property: var(--kr-blue);
+  --code-tag: var(--kr-blue);
+  --code-operator: var(--kr-fg-mid);
+  --code-punctuation: var(--kr-fg-dark);
+  --code-important: var(--kr-yellow);
+
+  --graph-node: var(--kr-fg-dark);
+  --graph-node-focused: var(--kr-accent);
+  --graph-node-tag: var(--kr-teal);
+  --graph-node-attachment: var(--kr-yellow);
+  --graph-node-unresolved: var(--kr-muted);
+  --graph-line: #b7a6dc;
+
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(109, 40, 217, 0.22);
+  --scrollbar-active-thumb-bg: rgba(109, 40, 217, 0.38);
+}
+
+.theme-light ::selection {
+  background: rgba(124, 58, 237, 0.2);
+}
+
+.theme-light code[class*="language-toml"] .token.table { color: var(--kr-keyword); font-weight: bold; }
+.theme-light code[class*="language-toml"] .token.key { color: var(--kr-blue); }
+.theme-light code[class*="language-toml"] .token.string { color: var(--kr-teal); }
+.theme-light code[class*="language-toml"] .token.number { color: var(--kr-yellow); }
+.theme-light code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
+.theme-light code[class*="language-toml"] .token.date { color: var(--kr-green); }
+.theme-light code[class*="language-toml"] .token.punctuation { color: var(--kr-fg-dark); }
+
+/* ---------- Mobile ---------- */
+.is-mobile {
+  --input-height: 40px;
+}
+
+.is-mobile .tree-item-self {
+  min-height: 40px;
+  align-items: center;
+}
+
+/* Wide tables scroll sideways instead of being clipped (reading view) */
+.is-mobile .markdown-preview-view table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.is-phone {
+  --h1-size: 1.7em;
+  --h2-size: 1.4em;
+  --h3-size: 1.2em;
+  --h4-size: 1.1em;
+  --h5-size: 1em;
+  --h6-size: 0.9em;
+}
