@@ -34,6 +34,14 @@ npx stylelint@16 theme.css
 
 Don't bump `version` in `manifest.json` yourself. [release-please](https://github.com/googleapis/release-please) keeps a `chore(main): release X.Y.Z` PR open that bumps `manifest.json` and `CHANGELOG.md` from the PR titles merged since the last release. Merging that PR tags `X.Y.Z` and publishes a GitHub release with `theme.css` and `manifest.json` attached, which is what Obsidian installs from.
 
+Versions follow [semver](https://semver.org) as plain `MAJOR.MINOR.PATCH` (no `v` prefix; Obsidian matches the release tag to the version exactly). Your PR title decides the bump:
+
+- **Patch** (`fix: ...`): fixes to existing styling, like a wrong color or broken contrast.
+- **Minor** (`feat: ...`): new styling, like support for a plugin or a new element.
+- **Major** (`feat!: ...`, or a `BREAKING CHANGE:` footer): changes that break how people use the theme, like renaming or removing `--kr-*` variables people override in snippets, or raising `minAppVersion`.
+
+CI fails a PR that edits `version` by hand.
+
 ## Conduct
 
 Be kind. See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
