@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/SAUCE-2/obsidian-lynx-kiro/compare/1.2.0...1.2.1) (2026-11-20)
+
+
+### Bug Fixes
+
+* clear Obsidian's theme-review CSS warnings and lint with its rules in CI ([#27](https://github.com/SAUCE-2/obsidian-lynx-kiro/issues/27)) ([01de6d5](https://github.com/SAUCE-2/obsidian-lynx-kiro/commit/01de6d574b6c109c5880ce1df064c5f5a4cc02a8))
+
 ## [1.2.0](https://github.com/SAUCE-2/obsidian-lynx-kiro/compare/1.1.0...1.2.0) (2026-11-20)
 
 
