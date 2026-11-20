@@ -1,5 +1,116 @@
 /* Lynx Kiro for Obsidian, ported from bastndev/Lynx-Theme-Pro (06_Lynx-Kiro-theme). Dark only. */
 
+/* @settings
+
+name: Lynx Kiro
+id: lynx-kiro
+settings:
+    -
+        id: lynx-colors
+        title: Colors
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: lynx-accent
+        title: Accent color
+        description: Links, active items, tags, buttons and the H2 color. Purple is the original Kiro look.
+        type: class-select
+        allowEmpty: false
+        default: lynx-accent-purple
+        options:
+            -
+                label: Purple (Kiro)
+                value: lynx-accent-purple
+            -
+                label: Teal
+                value: lynx-accent-teal
+            -
+                label: Pink
+                value: lynx-accent-pink
+            -
+                label: Blue
+                value: lynx-accent-blue
+            -
+                label: Custom (pick below)
+                value: lynx-accent-custom
+    -
+        id: lynx-accent-custom
+        title: Custom accent color
+        description: Used when the accent color is set to Custom.
+        type: variable-color
+        format: hex
+        default: '#a78bfa'
+    -
+        id: lynx-background
+        title: Background contrast
+        type: class-select
+        allowEmpty: false
+        default: lynx-bg-default
+        options:
+            -
+                label: Default
+                value: lynx-bg-default
+            -
+                label: Darker
+                value: lynx-bg-darker
+            -
+                label: Softer
+                value: lynx-bg-softer
+    -
+        id: lynx-headings
+        title: Heading colors
+        type: class-select
+        allowEmpty: false
+        default: lynx-headings-rainbow
+        options:
+            -
+                label: Rainbow (one color per level)
+                value: lynx-headings-rainbow
+            -
+                label: Accent color
+                value: lynx-headings-accent
+            -
+                label: Monochrome
+                value: lynx-headings-mono
+    -
+        id: lynx-plain-emphasis
+        title: Plain bold and italic
+        description: Bold and italic text use the normal text color instead of pink and blue.
+        type: class-toggle
+        default: false
+    -
+        id: lynx-layout
+        title: Layout and fonts
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: file-line-width
+        title: Readable line width
+        description: Maximum width of a note when "Readable line length" is on.
+        type: variable-number
+        default: 700
+        format: px
+    -
+        id: font-text-theme
+        title: Text font
+        description: Font for note text, e.g. Inter, sans-serif. Leave empty for the default. Obsidian's own font setting wins if set.
+        type: variable-text
+        default: ''
+    -
+        id: font-monospace-theme
+        title: Code font
+        description: Font for code, e.g. JetBrains Mono, monospace. Leave empty for the default. Obsidian's own font setting wins if set.
+        type: variable-text
+        default: ''
+
+    # Feature settings (checkboxes, headings, tables, folders...) go below,
+    # each under its own level-1 heading. Their CSS goes in the
+    # "Style Settings" section at the end of this file.
+
+*/
+
 .theme-dark {
   /* ---------- Palette ---------- */
   --kr-bg-darkest: #0e0c14;
@@ -165,3 +276,79 @@
 .theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
+
+/* ---------- Style Settings ---------- */
+/* Classes and variables from the @settings block at the top. With no settings changed, nothing here applies. */
+
+/* Accent presets: each sets --lynx-accent; the shared rule below derives the rest from it. */
+.theme-dark.lynx-accent-teal { --lynx-accent: var(--kr-teal); --accent-h: 169; --accent-s: 63%; --accent-l: 54%; }
+.theme-dark.lynx-accent-pink { --lynx-accent: var(--kr-pink); --accent-h: 330; --accent-s: 73%; --accent-l: 78%; }
+.theme-dark.lynx-accent-blue { --lynx-accent: var(--kr-blue); --accent-h: 200; --accent-s: 87%; --accent-l: 70%; }
+/* Unset picker falls back to the Kiro purple (--kr-accent). */
+.theme-dark.lynx-accent-custom { --lynx-accent: var(--lynx-accent-custom, #a78bfa); }
+
+.theme-dark.lynx-accent-teal,
+.theme-dark.lynx-accent-pink,
+.theme-dark.lynx-accent-blue,
+.theme-dark.lynx-accent-custom {
+  --kr-accent: var(--lynx-accent);
+  --kr-accent-strong: color-mix(in srgb, var(--lynx-accent) 60%, black);
+  --kr-accent-hover: color-mix(in srgb, var(--lynx-accent) 80%, black);
+  --kr-lavender: color-mix(in srgb, var(--lynx-accent) 70%, white);
+  --color-accent-2: color-mix(in srgb, var(--lynx-accent) 50%, white);
+  --background-modifier-hover: color-mix(in srgb, var(--lynx-accent) 8%, transparent);
+  --background-modifier-active-hover: color-mix(in srgb, var(--lynx-accent) 16%, transparent);
+  --tag-background: color-mix(in srgb, var(--lynx-accent) 12%, transparent);
+  --tag-background-hover: color-mix(in srgb, var(--lynx-accent) 20%, transparent);
+  --text-selection: color-mix(in srgb, var(--kr-accent-strong) 35%, transparent);
+  --graph-line: color-mix(in srgb, var(--lynx-accent) 55%, var(--kr-bg));
+  --scrollbar-thumb-bg: color-mix(in srgb, var(--kr-accent-strong) 40%, transparent);
+  --scrollbar-active-thumb-bg: color-mix(in srgb, var(--kr-accent-strong) 60%, transparent);
+}
+
+.theme-dark.lynx-accent-teal ::selection,
+.theme-dark.lynx-accent-pink ::selection,
+.theme-dark.lynx-accent-blue ::selection,
+.theme-dark.lynx-accent-custom ::selection {
+  background: var(--text-selection);
+}
+
+/* Background contrast. Each override is built only from palette vars it doesn't change. */
+.theme-dark.lynx-bg-darker {
+  --kr-bg: var(--kr-bg-darkest);
+  --kr-bg-dark: color-mix(in srgb, var(--kr-bg-darkest) 70%, black);
+  --kr-bg-float: color-mix(in srgb, var(--kr-bg-highlight) 40%, var(--kr-bg-darkest));
+  --color-base-00: var(--kr-bg-dark);
+  --background-secondary-alt: var(--kr-bg-dark);
+}
+
+.theme-dark.lynx-bg-softer {
+  --kr-bg: color-mix(in srgb, var(--kr-bg-highlight) 55%, var(--kr-bg-darkest));
+  --kr-bg-dark: color-mix(in srgb, var(--kr-bg-highlight) 40%, var(--kr-bg-darkest));
+  --kr-bg-float: color-mix(in srgb, var(--kr-bg-highlight) 85%, var(--kr-bg-darkest));
+}
+
+/* Heading colors */
+.theme-dark.lynx-headings-accent {
+  --h1-color: var(--kr-accent);
+  --h2-color: var(--kr-accent);
+  --h3-color: var(--kr-accent);
+  --h4-color: var(--kr-accent);
+  --h5-color: var(--kr-accent);
+  --h6-color: var(--kr-accent);
+}
+
+.theme-dark.lynx-headings-mono {
+  --h1-color: var(--text-normal);
+  --h2-color: var(--text-normal);
+  --h3-color: var(--text-normal);
+  --h4-color: var(--text-normal);
+  --h5-color: var(--text-normal);
+  --h6-color: var(--text-normal);
+}
+
+/* Plain bold and italic */
+.theme-dark.lynx-plain-emphasis {
+  --bold-color: inherit;
+  --italic-color: inherit;
+}
