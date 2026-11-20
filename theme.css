@@ -172,28 +172,22 @@
    - [l] location      - [b] bookmark    - [i] info        - [S] savings
    - [I] idea          - [p] pro         - [c] con         - [f] fire
    - [k] key           - [w] win         - [u] up          - [d] down
+   Every state is a solid box with a dark icon, like [x].
    Only [x] and [-] strike through the text. */
 
-.theme-dark :is(input:is([data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked {
-  background-color: transparent;
+.theme-dark :is(input:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked {
+  background-color: var(--kr-task-color);
   border-color: var(--kr-task-color);
 }
 
-.theme-dark :is(input:is([data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked::after {
-  background-color: var(--kr-task-color);
+.theme-dark :is(input:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked::after {
+  background-color: var(--kr-bg-darkest);
   -webkit-mask-image: var(--kr-task-icon);
   mask-image: var(--kr-task-icon);
-  -webkit-mask-size: 75%;
-  mask-size: 75%;
+  -webkit-mask-size: 80%;
+  mask-size: 80%;
   -webkit-mask-position: center;
   mask-position: center;
-}
-
-.theme-dark :is(input[data-task="/"], li[data-task="/"] > input, li[data-task="/"] > p > input).task-list-item-checkbox:checked {
-  background: linear-gradient(90deg, var(--kr-task-color) 50%, transparent 50%);
-}
-.theme-dark :is(input[data-task="/"], li[data-task="/"] > input, li[data-task="/"] > p > input).task-list-item-checkbox:checked::after {
-  content: none;
 }
 
 .theme-dark .markdown-rendered li.task-list-item.is-checked:is([data-task="/"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]),
@@ -202,12 +196,29 @@
   text-decoration: none;
 }
 
+.theme-dark .markdown-rendered li.task-list-item[data-task="-"],
+.theme-dark .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line[data-task="-"] {
+  color: var(--checklist-done-color);
+  text-decoration: var(--checklist-done-decoration);
+}
+
+.theme-dark :is(input[data-task="x"], li[data-task="x"] > input, li[data-task="x"] > p > input).task-list-item-checkbox { /* done */
+  --kr-task-color: var(--kr-accent);
+  --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+}
+
+.theme-dark :is(input[data-task="X"], li[data-task="X"] > input, li[data-task="X"] > p > input).task-list-item-checkbox { /* done */
+  --kr-task-color: var(--kr-accent);
+  --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+}
+
 .theme-dark :is(input[data-task="/"], li[data-task="/"] > input, li[data-task="/"] > p > input).task-list-item-checkbox { /* in progress */
   --kr-task-color: var(--kr-yellow);
+  --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12h.01M12 12h.01M18 12h.01' stroke-width='4.5'/%3E%3C/svg%3E");
 }
 
 .theme-dark :is(input[data-task="-"], li[data-task="-"] > input, li[data-task="-"] > p > input).task-list-item-checkbox { /* cancelled */
-  --kr-task-color: var(--kr-muted);
+  --kr-task-color: var(--kr-faint);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
 }
 
