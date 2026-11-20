@@ -9,4 +9,4 @@
 ## Checklist
 
 - [ ] Tested in Obsidian (dark mode)
-- [ ] PR title is a [conventional commit](https://www.conventionalcommits.org) (`fix:` → patch, `feat:` → minor, `feat!:` → major)
+- [ ] PR title is a [conventional commit](https://www.conventionalcommits.org) (`fix:` → patch, `feat:` → minor, `feat!:` or a `BREAKING CHANGE:` line in the description → major)

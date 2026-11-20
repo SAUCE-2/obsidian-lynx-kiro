@@ -28,9 +28,14 @@ jobs:
       # release-please owns the version; a hand edit would desync it from
       # CHANGELOG.md and .release-please-manifest.json.
       - name: Check version isn't bumped by hand
-        if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'release-please--')
+        if: >-
+          github.event_name == 'pull_request' &&
+          !(startsWith(github.head_ref, 'release-please--') &&
+            github.event.pull_request.head.repo.full_name == github.repository)
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          git fetch --depth=1 origin "$GITHUB_BASE_REF"
+          git fetch --depth=1 origin "$BASE_SHA"
           old=$(git show FETCH_HEAD:manifest.json | jq -r .version)
           new=$(jq -r .version manifest.json)
           if [ "$old" != "$new" ]; then
