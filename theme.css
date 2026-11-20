@@ -165,3 +165,84 @@
 .theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
+
+/* ---------- Code blocks & inline code ---------- */
+/* Reading view: rounded block with a subtle border */
+.theme-dark .markdown-rendered pre {
+  position: relative;
+  border: 1px solid var(--kr-border);
+  border-radius: var(--radius-m);
+}
+
+/* Reading view: language label, top right. Prism puts "language-<lang>" on the
+   <pre>; the monospace -9ch indent clips the "language-" prefix off attr(class). */
+.theme-dark .markdown-rendered pre[class^="language-"]::before {
+  content: attr(class);
+  position: absolute;
+  top: 0.5em;
+  right: 0.75em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: -9ch;
+  font-family: var(--font-monospace);
+  font-size: var(--font-smallest);
+  color: var(--kr-faint);
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.theme-dark .markdown-rendered pre[class^="language-"]:hover::before {
+  opacity: 0;
+}
+
+/* Reading view: copy button (shown on hover, replaces the label) */
+.theme-dark .markdown-rendered button.copy-code-button {
+  background-color: var(--kr-bg-highlight);
+  border: 1px solid var(--kr-border-strong);
+  border-radius: var(--radius-s);
+  box-shadow: none;
+  color: var(--kr-fg-dark);
+}
+
+.theme-dark .markdown-rendered button.copy-code-button:hover {
+  background-color: var(--kr-bg-highlight);
+  border-color: var(--kr-accent);
+  color: var(--kr-accent);
+}
+
+/* Live Preview: same rounded border, drawn with inset shadows so lines don't shift */
+.theme-dark .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  box-shadow: inset 1px 0 0 var(--kr-border), inset -1px 0 0 var(--kr-border);
+}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin {
+  border-radius: var(--radius-m) var(--radius-m) 0 0;
+  box-shadow: inset 1px 0 0 var(--kr-border), inset -1px 0 0 var(--kr-border), inset 0 1px 0 var(--kr-border);
+}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
+  border-radius: 0 0 var(--radius-m) var(--radius-m);
+  box-shadow: inset 1px 0 0 var(--kr-border), inset -1px 0 0 var(--kr-border), inset 0 -1px 0 var(--kr-border);
+}
+
+/* Live Preview: language label on the opening fence (Obsidian renders it; click copies) */
+.theme-dark .markdown-source-view.mod-cm6 .code-block-flair {
+  font-family: var(--font-monospace);
+  font-size: var(--font-smallest);
+  color: var(--kr-faint);
+  border-radius: var(--radius-s);
+}
+
+.theme-dark .markdown-source-view.mod-cm6 .code-block-flair:hover {
+  background-color: var(--kr-bg-highlight);
+  color: var(--kr-accent);
+}
+
+/* Inline code, both views: tinted background, accent text */
+.theme-dark .markdown-rendered :not(pre) > code,
+.theme-dark .markdown-source-view.mod-cm6 .cm-inline-code:not(.cm-formatting-code) {
+  background-color: rgba(167, 139, 250, 0.12);
+  color: var(--kr-lavender);
+  border-radius: var(--radius-s);
+  padding: 0.1em 0.3em;
+}
