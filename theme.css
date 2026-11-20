@@ -53,6 +53,17 @@
   --color-purple: var(--kr-accent);
   --color-pink: var(--kr-pink);
 
+  /* ---------- Palette RGB triplets (callouts, canvas, plugins) ---------- */
+  /* Same colors as the --color-* hex values above; CSS can't derive these from hex. */
+  --color-red-rgb: 240, 112, 128;
+  --color-orange-rgb: 232, 200, 128;
+  --color-yellow-rgb: 232, 197, 71;
+  --color-green-rgb: 93, 186, 120;
+  --color-cyan-rgb: 64, 212, 184;
+  --color-blue-rgb: 110, 200, 245;
+  --color-purple-rgb: 167, 139, 250;
+  --color-pink-rgb: 240, 160, 200;
+
   /* Accent (overrides the accent color picker) */
   --accent-h: 255;
   --accent-s: 92%;
