@@ -12,6 +12,10 @@ Dark mode only.
 2. Put them in `<your vault>/.obsidian/themes/Lynx Kiro/`.
 3. In Obsidian: **Settings → Appearance → Themes → Lynx Kiro**, and switch to dark mode.
 
+## Contributing
+
+Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Credits
 
 - Original palette and design: **Lynx Theme Pro** (the `Lynx Kiro` theme) by Gohit X ([bastndev](https://github.com/bastndev/Lynx-Theme-Pro)), MIT licensed. This repo is an Obsidian port of that work.

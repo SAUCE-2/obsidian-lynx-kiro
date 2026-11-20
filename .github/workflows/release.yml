@@ -1,0 +1,30 @@
+name: Release
+
+# Obsidian installs themes from the GitHub release whose tag matches
+# manifest.json's version. Bump the version in a PR; merging it releases.
+on:
+  push:
+    branches: [main]
+    paths: [manifest.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Release manifest version if new
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(jq -r .version manifest.json)
+          if gh release view "$version" >/dev/null 2>&1; then
+            echo "Release $version already exists."
+            exit 0
+          fi
+          gh release create "$version" theme.css manifest.json \
+            --title "$version" --generate-notes --target "$GITHUB_SHA"
