@@ -6,8 +6,6 @@ A dark purple Obsidian theme, ported from the **Lynx Kiro** variant of [Lynx The
 
 Dark mode only.
 
-Also styles alternate checkboxes: `[/]` in progress, `[-]` cancelled, `[>]` forwarded, `[<]` scheduled, `[?]` question, `[!]` important, `[*]` star, `["]` quote, `[l]` location, `[b]` bookmark, `[i]` info, `[S]` savings, `[I]` idea, `[p]` pro, `[c]` con, `[f]` fire, `[k]` key, `[w]` win, `[u]` up, `[d]` down.
-
 ## Install
 
 1. Download `theme.css` and `manifest.json` from this repo (or the latest release).
