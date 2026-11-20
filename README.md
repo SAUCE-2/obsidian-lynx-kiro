@@ -6,6 +6,20 @@ A dark purple Obsidian theme, ported from the **Lynx Kiro** variant of [Lynx The
 
 Dark mode only.
 
+## Screenshots
+
+Captured from a real Obsidian with the [demo vault](demo-vault); see [scripts/screenshots](scripts/screenshots) to regenerate them.
+
+| Live Preview | Reading view |
+| :---: | :---: |
+| ![Showcase note in Live Preview](screenshots/editor-live-preview.png) | ![Showcase note in reading view, lists and tasks](screenshots/reading-view.png) |
+| **Callouts** | **Code blocks** |
+| ![Every callout type](screenshots/callouts.png) | ![TypeScript, Python and TOML code blocks](screenshots/code-blocks.png) |
+| **Graph view** | **Canvas** |
+| ![Graph view of the demo vault](screenshots/graph-view.png) | ![Canvas with colored cards](screenshots/canvas.png) |
+| **Command palette** | **Settings** |
+| ![Command palette](screenshots/command-palette.png) | ![Settings, Appearance tab](screenshots/settings.png) |
+
 ## Install
 
 1. Download `theme.css` and `manifest.json` from this repo (or the latest release).

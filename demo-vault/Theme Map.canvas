@@ -1,0 +1,148 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": -260,
+      "y": -420,
+      "width": 520,
+      "height": 110,
+      "text": "# Lynx Kiro\nA dark purple theme for Obsidian",
+      "color": "6"
+    },
+    {
+      "id": "palette",
+      "type": "file",
+      "file": "Resources/Color Palette.md",
+      "x": -760,
+      "y": -220,
+      "width": 420,
+      "height": 330,
+      "color": "5"
+    },
+    {
+      "id": "plan",
+      "type": "file",
+      "file": "Projects/Theme port/Theme Port Plan.md",
+      "x": 340,
+      "y": -220,
+      "width": 420,
+      "height": 330,
+      "color": "4"
+    },
+    {
+      "id": "red",
+      "type": "text",
+      "x": -760,
+      "y": 260,
+      "width": 220,
+      "height": 90,
+      "text": "**Red**\n`#f07080`",
+      "color": "1"
+    },
+    {
+      "id": "orange",
+      "type": "text",
+      "x": -500,
+      "y": 260,
+      "width": 220,
+      "height": 90,
+      "text": "**Orange**\n`#e8c880`",
+      "color": "2"
+    },
+    {
+      "id": "yellow",
+      "type": "text",
+      "x": -240,
+      "y": 260,
+      "width": 220,
+      "height": 90,
+      "text": "**Yellow**\n`#e8c547`",
+      "color": "3"
+    },
+    {
+      "id": "green",
+      "type": "text",
+      "x": 20,
+      "y": 260,
+      "width": 220,
+      "height": 90,
+      "text": "**Green**\n`#5dba78`",
+      "color": "4"
+    },
+    {
+      "id": "cyan",
+      "type": "text",
+      "x": 280,
+      "y": 260,
+      "width": 220,
+      "height": 90,
+      "text": "**Cyan**\n`#40d4b8`",
+      "color": "5"
+    },
+    {
+      "id": "purple",
+      "type": "text",
+      "x": 540,
+      "y": 260,
+      "width": 220,
+      "height": 90,
+      "text": "**Purple**\n`#a78bfa`",
+      "color": "6"
+    },
+    {
+      "id": "todo",
+      "type": "text",
+      "x": -240,
+      "y": -220,
+      "width": 480,
+      "height": 330,
+      "text": "## Next up\n- [x] Base scale\n- [/] Callouts\n- [ ] Rainbow folders\n- [ ] Canvas colors"
+    },
+    {
+      "id": "group",
+      "type": "group",
+      "x": -790,
+      "y": 210,
+      "width": 1580,
+      "height": 170,
+      "label": "Canvas colors",
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "title",
+      "fromSide": "left",
+      "toNode": "palette",
+      "toSide": "top",
+      "color": "5"
+    },
+    {
+      "id": "e2",
+      "fromNode": "title",
+      "fromSide": "right",
+      "toNode": "plan",
+      "toSide": "top",
+      "color": "4"
+    },
+    {
+      "id": "e3",
+      "fromNode": "title",
+      "fromSide": "bottom",
+      "toNode": "todo",
+      "toSide": "top",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e4",
+      "fromNode": "palette",
+      "fromSide": "bottom",
+      "toNode": "group",
+      "toSide": "top",
+      "color": "6",
+      "label": "swatches"
+    }
+  ]
+}
