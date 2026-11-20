@@ -2,6 +2,8 @@
 
 A dark purple Obsidian theme, ported from the **Lynx Kiro** variant of [Lynx Theme Pro](https://github.com/bastndev/Lynx-Theme-Pro) by [bastndev](https://github.com/bastndev).
 
+![Lynx Kiro screenshot](screenshot-full.png)
+
 Dark mode only.
 
 ## Install
