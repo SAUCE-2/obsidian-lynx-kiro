@@ -151,6 +151,44 @@
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: rgba(96, 64, 160, 0.4);
   --scrollbar-active-thumb-bg: rgba(96, 64, 160, 0.6);
+
+  /* ---------- Tables, embeds, properties, blockquotes ---------- */
+  --table-border-color: var(--kr-border);
+  --table-header-background: var(--kr-bg-float);
+  --table-header-background-hover: var(--kr-bg-highlight);
+  --table-header-border-color: var(--kr-border-strong);
+  --table-header-color: var(--kr-lavender);
+  --table-header-weight: 600;
+  --table-text-color: var(--kr-fg);
+  --table-row-alt-background: var(--kr-bg-dark);
+  --table-row-alt-background-hover: rgba(167, 139, 250, 0.08);
+  --table-row-background-hover: rgba(167, 139, 250, 0.08);
+  --table-selection: rgba(124, 58, 237, 0.2);
+  --table-selection-border-color: var(--kr-accent);
+  --table-drag-handle-color: var(--kr-muted);
+  --table-drag-handle-color-active: var(--kr-accent);
+  --table-drag-handle-background-active: var(--kr-accent-strong);
+  --table-add-button-border-color: var(--kr-border);
+  --embed-background: rgba(167, 139, 250, 0.04);
+  --embed-border-start: 2px solid var(--kr-accent-strong);
+  --embed-border-end: none;
+  --embed-border-top: none;
+  --embed-border-bottom: none;
+  --blockquote-background-color: rgba(167, 139, 250, 0.06);
+  --blockquote-color: var(--kr-fg-mid);
+  --metadata-border-color: var(--kr-border);
+  --metadata-divider-color: var(--kr-border);
+  --metadata-divider-color-hover: var(--kr-border-strong);
+  --metadata-divider-color-focus: var(--kr-accent);
+  --metadata-label-text-color: var(--kr-fg-dark);
+  --metadata-label-text-color-hover: var(--kr-lavender);
+  --metadata-label-background-hover: var(--kr-bg-highlight);
+  --metadata-label-background-active: var(--kr-bg-highlight);
+  --metadata-input-text-color: var(--kr-fg);
+  --metadata-input-background-hover: var(--kr-bg-highlight);
+  --metadata-input-background-active: var(--kr-bg-highlight);
+  --metadata-property-background-hover: rgba(167, 139, 250, 0.06);
+  --metadata-property-background-active: rgba(167, 139, 250, 0.1);
 }
 
 .theme-dark ::selection {
@@ -165,3 +203,35 @@
 .theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
+
+/* ---------- Tables, highlights, footnotes, properties ---------- */
+.theme-dark .markdown-rendered mark,
+.theme-dark .cm-s-obsidian span.cm-highlight {
+  color: var(--kr-fg);
+  border-radius: 2px;
+}
+.theme-dark .footnote-link,
+.theme-dark .cm-s-obsidian span.cm-footref {
+  color: var(--kr-accent);
+}
+.theme-dark .footnote-link:hover {
+  color: var(--kr-lavender);
+}
+.theme-dark section.footnotes {
+  color: var(--kr-fg-dark);
+}
+.theme-dark .footnotes-sep {
+  border-color: var(--kr-border);
+}
+.theme-dark .footnote-backref {
+  color: var(--kr-muted);
+}
+.theme-dark .footnote-backref:hover {
+  color: var(--kr-accent);
+}
+.theme-dark .metadata-property-icon {
+  color: var(--kr-faint);
+}
+.theme-dark .metadata-property:hover .metadata-property-icon {
+  color: var(--kr-accent);
+}
