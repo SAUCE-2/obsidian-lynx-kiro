@@ -8,9 +8,21 @@ Dark mode only.
 
 ## Install
 
-1. Download `theme.css` and `manifest.json` from this repo (or the latest release).
-2. Put them in `<your vault>/.obsidian/themes/Lynx Kiro/`.
-3. In Obsidian: **Settings → Appearance → Themes → Lynx Kiro**, and switch to dark mode.
+### From Obsidian (once the theme is listed in the community directory)
+
+1. **Settings → Appearance → Themes → Manage**.
+2. Search for "Lynx Kiro", then click **Install and use**.
+3. Switch to dark mode.
+
+### Manually
+
+1. Download `theme.css` and `manifest.json` from the [latest release](https://github.com/SAUCE-2/obsidian-lynx-kiro/releases/latest).
+2. Put them in a folder named exactly `Lynx Kiro` inside `<your vault>/.obsidian/themes/`. To find that folder, click the folder icon in **Settings → Appearance → Themes**.
+3. Back in **Themes**, click the reload icon, pick **Lynx Kiro**, and switch to dark mode.
+
+### Updating
+
+Community installs update from **Settings → Appearance → Check for updates**. For a manual install, download the two files again and replace the old ones.
 
 ## Contributing
 
