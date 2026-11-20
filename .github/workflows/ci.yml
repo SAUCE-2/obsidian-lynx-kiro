@@ -46,9 +46,13 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
+          cache: npm
+
+      # Obsidian's own theme-review rules (stylelint-config-obsidianmd); warnings fail too.
+      - run: npm ci
 
       - name: Lint theme.css
-        run: npx --yes stylelint@16 theme.css
+        run: npm run lint
 
   # PRs are squash-merged with the PR title as the commit message, so the
   # title is what release-please reads. Skipped (which passes) outside PRs.
