@@ -754,7 +754,8 @@ settings:
 :is(.theme-dark, .theme-light) .task-list-item[data-task-status-type="IN_PROGRESS"] .task-due[data-task-due^="past-"] { color: var(--kr-red); }
 
 /* Excalidraw (zsviczian/obsidian-excalidraw-plugin): UI chrome only, canvas untouched */
-:is(.theme-dark, .theme-light) .excalidraw.theme--dark {
+.theme-dark .excalidraw.theme--dark,
+.theme-light .excalidraw.theme--light {
   --island-bg-color: var(--kr-bg-float);
   --color-primary: var(--kr-accent);
   --color-primary-darker: var(--kr-lavender);
