@@ -151,6 +151,11 @@
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: rgba(96, 64, 160, 0.4);
   --scrollbar-active-thumb-bg: rgba(96, 64, 160, 0.6);
+
+  /* ---------- Checkboxes ---------- */
+  --checkbox-color-hover: var(--kr-accent-hover);
+  --checkbox-border-color-hover: var(--kr-accent);
+  --checkbox-marker-color: var(--text-on-accent);
 }
 
 .theme-dark ::selection {
@@ -165,3 +170,56 @@
 .theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
+
+/* ---------- Alternate checkboxes ---------- */
+/* [/] [-] [>] [<] [?] [!] [*] ["] [l] [b] [i] [S] [I] [p] [c] [f] [k] [w] [u] [d], as in Minimal/Things.
+   Icons: Lucide (lucide.dev, ISC/MIT), used as masks so they take the --kr-* colors below.
+   Reading view puts data-task on the li and input; Live Preview on .HyperMD-task-line. */
+.theme-dark :is(
+  input[data-task]:not([data-task="x"], [data-task="X"], [data-task=" "]),
+  li[data-task]:not([data-task="x"], [data-task="X"], [data-task=" "]) > input,
+  li[data-task]:not([data-task="x"], [data-task="X"], [data-task=" "]) > p > input,
+  .HyperMD-task-line[data-task]:not([data-task="x"], [data-task="X"], [data-task=" "]) .task-list-item-checkbox
+):checked {
+  --checkbox-marker-color: transparent;
+  border: none;
+  border-radius: 0;
+  background-color: var(--lk-task-color, var(--kr-accent));
+  -webkit-mask-image: var(--lk-task-icon);
+  -webkit-mask-size: 100%;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+}
+.theme-dark :is(li[data-task], .HyperMD-task-line[data-task]):not([data-task="x"], [data-task="X"], [data-task=" "], [data-task="-"]) {
+  --checklist-done-decoration: none;
+  --checklist-done-color: var(--text-normal);
+}
+.theme-dark :is(li, .HyperMD-task-line):is([data-task="x"], [data-task="X"]) {
+  --checklist-done-decoration: line-through;
+  --checklist-done-color: var(--text-muted);
+}
+.theme-dark :is(li, .HyperMD-task-line)[data-task="-"] {
+  --checklist-done-decoration: line-through;
+  --checklist-done-color: var(--text-faint);
+}
+
+.theme-dark [data-task="/"] { --lk-task-color: var(--kr-yellow); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a10 10 0 0 1 0 20z' fill='black'/%3E%3C/svg%3E"); } /* in progress */
+.theme-dark [data-task="-"] { --lk-task-color: var(--kr-faint); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E"); } /* cancelled */
+.theme-dark [data-task=">"] { --lk-task-color: var(--kr-blue); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M12 5l7 7-7 7'/%3E%3C/svg%3E"); } /* forwarded */
+.theme-dark [data-task="<"] { --lk-task-color: var(--kr-teal); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='4' rx='2'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18'/%3E%3C/svg%3E"); } /* scheduled */
+.theme-dark [data-task="?"] { --lk-task-color: var(--kr-peach); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/%3E%3C/svg%3E"); } /* question */
+.theme-dark [data-task="!"] { --lk-task-color: var(--kr-red); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4M12 16h.01'/%3E%3C/svg%3E"); } /* important */
+.theme-dark [data-task="*"] { --lk-task-color: var(--kr-yellow); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z'/%3E%3C/svg%3E"); } /* star */
+.theme-dark [data-task='"'] { --lk-task-color: var(--kr-lavender); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21c3 0 7-1 7-8V5c0-1.25-.76-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 0-1 1v2c0 1 0 1 1 1z'/%3E%3Cpath d='M15 21c3 0 7-1 7-8V5c0-1.25-.76-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z'/%3E%3C/svg%3E"); } /* quote */
+.theme-dark [data-task="l"] { --lk-task-color: var(--kr-pink); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"); } /* location */
+.theme-dark [data-task="b"] { --lk-task-color: var(--kr-peach); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'/%3E%3C/svg%3E"); } /* bookmark */
+.theme-dark [data-task="i"] { --lk-task-color: var(--kr-blue); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4M12 8h.01'/%3E%3C/svg%3E"); } /* info */
+.theme-dark [data-task="S"] { --lk-task-color: var(--kr-green); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'/%3E%3C/svg%3E"); } /* savings */
+.theme-dark [data-task="I"] { --lk-task-color: var(--kr-yellow); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5M9 18h6M10 22h4'/%3E%3C/svg%3E"); } /* idea */
+.theme-dark [data-task="p"] { --lk-task-color: var(--kr-green); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88z'/%3E%3C/svg%3E"); } /* pro */
+.theme-dark [data-task="c"] { --lk-task-color: var(--kr-red); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 14V2M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88z'/%3E%3C/svg%3E"); } /* con */
+.theme-dark [data-task="f"] { --lk-task-color: var(--kr-magenta); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z'/%3E%3C/svg%3E"); } /* fire */
+.theme-dark [data-task="k"] { --lk-task-color: var(--kr-peach); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4M21 2l-9.6 9.6'/%3E%3Ccircle cx='7.5' cy='15.5' r='5.5'/%3E%3C/svg%3E"); } /* key */
+.theme-dark [data-task="w"] { --lk-task-color: var(--kr-keyword); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='6'/%3E%3Cpath d='M15.48 12.89 17 22l-5-3-5 3 1.52-9.11'/%3E%3C/svg%3E"); } /* win */
+.theme-dark [data-task="u"] { --lk-task-color: var(--kr-green); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 7l-8.5 8.5-5-5L2 17M16 7h6v6'/%3E%3C/svg%3E"); } /* up */
+.theme-dark [data-task="d"] { --lk-task-color: var(--kr-red); --lk-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 17l-8.5-8.5-5 5L2 7M16 17h6v-6'/%3E%3C/svg%3E"); } /* down */
