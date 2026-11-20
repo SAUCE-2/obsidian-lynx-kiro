@@ -165,3 +165,83 @@
 .theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
+
+/* ---------- Community plugins ---------- */
+
+/* Kanban (mgmeyers/obsidian-kanban) */
+.theme-dark .kanban-plugin__lane { border-color: var(--kr-border); }
+.theme-dark .kanban-plugin__lane-header-wrapper { border-bottom-color: var(--kr-border-strong); }
+.theme-dark .kanban-plugin__lane-title { color: var(--kr-keyword); }
+.theme-dark div.kanban-plugin__lane-title-count { color: var(--kr-faint); }
+.theme-dark .kanban-plugin__item { border-color: var(--kr-border); }
+.theme-dark .kanban-plugin__item:hover { border-color: var(--kr-border-strong); }
+.theme-dark .kanban-plugin__item-title-wrapper:not(:only-child) { border-bottom-color: var(--kr-border); }
+.theme-dark .kanban-plugin__item-metadata-wrapper:not(:empty) { background-color: var(--kr-bg-dark); }
+.theme-dark .kanban-plugin__item-metadata { color: var(--kr-fg-dark); }
+.theme-dark .kanban-plugin__item-metadata-date,
+.theme-dark .kanban-plugin__item-metadata-time,
+.theme-dark .kanban-plugin__preview-date,
+.theme-dark .kanban-plugin__preview-time { color: var(--date-color, var(--kr-blue)); }
+.theme-dark .kanban-plugin__item-metadata-date-relative { color: var(--kr-faint); }
+.theme-dark .kanban-plugin__item-task-inline-metadata-item { background-color: var(--kr-bg-float); }
+
+/* Dataview (blacksmithgu/obsidian-dataview) */
+.theme-dark .table-view-table > thead > tr > th { color: var(--kr-accent); border-bottom-color: var(--kr-border-strong); }
+.theme-dark .dataview.small-text { color: var(--kr-muted); }
+.theme-dark .dataview.inline-field-key { background-color: var(--kr-bg-highlight); color: var(--kr-blue); border-radius: 4px 0 0 4px; }
+.theme-dark .dataview.inline-field-value { background-color: var(--kr-bg-float); color: var(--kr-fg); border-radius: 0 4px 4px 0; }
+.theme-dark .dataview.inline-field-standalone-value { background-color: var(--kr-bg-float); color: var(--kr-fg); border-radius: 4px; }
+.theme-dark .dataview.task-list-item:hover,
+.theme-dark .dataview.task-list-basic-item:hover { background-color: var(--background-modifier-hover); box-shadow: -40px 0 0 var(--background-modifier-hover); }
+.theme-dark pre.dataview-error { color: var(--kr-red); background-color: rgba(240, 112, 128, 0.08); border-left: 3px solid var(--kr-red); }
+.theme-dark div.dataview-error-box { border-color: var(--kr-border); }
+.theme-dark .dataview-error-message { color: var(--kr-faint); }
+
+/* Calendar (liamcain/obsidian-calendar-plugin) */
+.theme-dark #calendar-container.container {
+  --color-background-weekend: rgba(167, 139, 250, 0.04);
+  --color-dot: var(--kr-accent);
+  --color-arrow: var(--kr-fg-dark);
+  --color-button: var(--kr-fg-dark);
+  --color-text-title: var(--kr-keyword);
+  --color-text-heading: var(--kr-faint);
+  --color-text-day: var(--kr-fg);
+  --color-text-today: var(--kr-teal);
+  --color-text-weeknum: var(--kr-muted);
+}
+.theme-dark #calendar-container .today { font-weight: 700; }
+
+/* Tasks (obsidian-tasks-group/obsidian-tasks) */
+.theme-dark .tasks-count,
+.theme-dark .tasks-group-count { color: var(--kr-muted); }
+.theme-dark .tasks-urgency { background-color: var(--kr-bg-float); color: var(--kr-fg-mid); }
+.theme-dark .tasks-edit,
+.theme-dark .tasks-postpone { color: var(--kr-accent); }
+.theme-dark span.task-priority { padding: 0 0.25em; border-radius: var(--radius-s); }
+.theme-dark span.task-priority[data-task-priority="highest"] { background-color: rgba(240, 112, 128, 0.2); }
+.theme-dark span.task-priority[data-task-priority="high"] { background-color: rgba(232, 200, 128, 0.2); }
+.theme-dark span.task-priority[data-task-priority="medium"] { background-color: rgba(232, 197, 71, 0.16); }
+.theme-dark span.task-priority[data-task-priority="low"] { background-color: rgba(110, 200, 245, 0.16); }
+.theme-dark span.task-priority[data-task-priority="lowest"] { background-color: rgba(167, 139, 250, 0.12); }
+.theme-dark .task-created,
+.theme-dark .task-start,
+.theme-dark .task-scheduled,
+.theme-dark .task-done,
+.theme-dark .task-cancelled { color: var(--kr-fg-dark); }
+.theme-dark .task-due { color: var(--kr-blue); }
+.theme-dark .task-list-item[data-task-status-type="TODO"] .task-due[data-task-due="today"],
+.theme-dark .task-list-item[data-task-status-type="IN_PROGRESS"] .task-due[data-task-due="today"] { color: var(--kr-yellow); }
+.theme-dark .task-list-item[data-task-status-type="TODO"] .task-due[data-task-due^="past-"],
+.theme-dark .task-list-item[data-task-status-type="IN_PROGRESS"] .task-due[data-task-due^="past-"] { color: var(--kr-red); }
+
+/* Excalidraw (zsviczian/obsidian-excalidraw-plugin): UI chrome only, canvas untouched */
+.theme-dark .excalidraw.theme--dark {
+  --island-bg-color: var(--kr-bg-float);
+  --color-primary: var(--kr-accent);
+  --color-primary-darker: var(--kr-lavender);
+  --color-primary-darkest: var(--kr-keyword);
+  --color-primary-hover: var(--kr-accent-hover);
+  --color-primary-light: var(--kr-border-strong);
+  --color-primary-light-darker: var(--kr-border);
+  --color-surface-high: var(--kr-bg-highlight);
+}
