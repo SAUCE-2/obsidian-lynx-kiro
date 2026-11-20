@@ -165,3 +165,98 @@
 .theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
+
+/* ---------- Per-note helper classes (cssclasses frontmatter) ---------- */
+/* Obsidian adds a note's cssclasses to .markdown-source-view and .markdown-preview-view. */
+
+/* wide: ignore readable line width */
+.theme-dark :is(.markdown-source-view, .markdown-preview-view).wide {
+  --file-line-width: 100%;
+}
+
+/* table-full: tables span the full line width */
+.theme-dark :is(.markdown-source-view, .markdown-preview-view).table-full :is(table, .table-wrapper) {
+  width: 100%;
+}
+
+/* table-nowrap: keep table cells on one line */
+.theme-dark :is(.markdown-source-view, .markdown-preview-view).table-nowrap :is(th, td) {
+  white-space: nowrap;
+}
+
+/* img-grid: images in the same paragraph (reading view) or line (live preview) form a grid */
+.theme-dark .markdown-preview-view.img-grid p:has(> :is(img, .image-embed) ~ :is(img, .image-embed)),
+.theme-dark .markdown-source-view.img-grid .cm-line:has(> .image-embed ~ .image-embed) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--size-4-2);
+  align-items: start;
+}
+.theme-dark .markdown-preview-view.img-grid p:has(> :is(img, .image-embed) ~ :is(img, .image-embed)) > br {
+  display: none;
+}
+.theme-dark .markdown-source-view.img-grid .cm-line:has(> .image-embed ~ .image-embed) > .cm-widgetBuffer {
+  position: absolute;
+}
+.theme-dark :is(.markdown-source-view, .markdown-preview-view).img-grid :is(p, .cm-line) > :is(img, .image-embed),
+.theme-dark :is(.markdown-source-view, .markdown-preview-view).img-grid :is(p, .cm-line) > .image-embed img {
+  width: 100%;
+  margin: 0;
+}
+
+/* cards: Dataview TABLE results (both views) and plain tables (reading view only, so
+   Live Preview's table editor keeps working) as a card grid */
+.theme-dark .markdown-source-view.cards table.table-view-table,
+.theme-dark .markdown-preview-view.cards table {
+  display: block;
+  width: 100%;
+  border: none;
+}
+.theme-dark .markdown-source-view.cards table.table-view-table > thead,
+.theme-dark .markdown-preview-view.cards table > thead {
+  display: none;
+}
+.theme-dark .markdown-source-view.cards table.table-view-table > tbody,
+.theme-dark .markdown-preview-view.cards table > tbody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--size-4-3);
+}
+.theme-dark .markdown-source-view.cards table.table-view-table > tbody > tr,
+.theme-dark .markdown-preview-view.cards table > tbody > tr {
+  display: flex;
+  flex-direction: column;
+  padding: var(--size-4-2) var(--size-4-3);
+  background: var(--kr-bg-float);
+  border: 1px solid var(--kr-border);
+  border-radius: var(--radius-m);
+}
+.theme-dark .markdown-source-view.cards table.table-view-table > tbody > tr:hover,
+.theme-dark .markdown-preview-view.cards table > tbody > tr:hover {
+  border-color: var(--kr-border-strong);
+}
+.theme-dark .markdown-source-view.cards table.table-view-table > tbody > tr > td,
+.theme-dark .markdown-preview-view.cards table > tbody > tr > td {
+  display: block;
+  padding: var(--size-2-1) 0;
+  background: transparent;
+  border: none;
+  color: var(--kr-fg-dark);
+}
+.theme-dark .markdown-source-view.cards table.table-view-table > tbody > tr > td:first-child,
+.theme-dark .markdown-preview-view.cards table > tbody > tr > td:first-child {
+  margin-bottom: var(--size-4-1);
+  padding-bottom: var(--size-4-1);
+  border-bottom: 1px solid var(--kr-border);
+  color: var(--kr-fg);
+  font-weight: var(--font-semibold);
+}
+.theme-dark .markdown-source-view.cards table.table-view-table > tbody > tr > td:empty,
+.theme-dark .markdown-preview-view.cards table > tbody > tr > td:empty {
+  display: none;
+}
+
+/* no-props: hide the properties block */
+.theme-dark :is(.markdown-source-view, .markdown-preview-view).no-props .metadata-container {
+  display: none;
+}
