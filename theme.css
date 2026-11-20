@@ -156,3 +156,12 @@
 .theme-dark ::selection {
   background: rgba(124, 58, 237, 0.35);
 }
+
+/* ---------- TOML (Lynx 5.4.0), reading view / Prism ---------- */
+.theme-dark code[class*="language-toml"] .token.table { color: var(--kr-keyword); font-weight: bold; }
+.theme-dark code[class*="language-toml"] .token.key { color: var(--kr-blue); }
+.theme-dark code[class*="language-toml"] .token.string { color: var(--kr-teal); }
+.theme-dark code[class*="language-toml"] .token.number { color: var(--kr-yellow); }
+.theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
+.theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
+.theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
