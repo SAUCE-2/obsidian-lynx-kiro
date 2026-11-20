@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check manifest.json
+        run: |
+          jq -e '
+            (.name | type == "string" and length > 0) and
+            (.version | test("^[0-9]+\\.[0-9]+\\.[0-9]+$")) and
+            (.minAppVersion | test("^[0-9]+\\.[0-9]+\\.[0-9]+$")) and
+            (.author | type == "string" and length > 0)
+          ' manifest.json
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Lint theme.css
+        run: npx --yes stylelint@16 theme.css

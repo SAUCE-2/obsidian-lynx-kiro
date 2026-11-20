@@ -1,0 +1,11 @@
+name: Feature request
+description: Suggest a styling change or support for a plugin
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+      description: Describe the change. Screenshots or mockups help.
+    validations:
+      required: true
