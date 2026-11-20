@@ -117,12 +117,6 @@ settings:
         description: Fade editor panes you're not working in.
         type: class-toggle
         default: false
-    -
-        id: lynx-rainbow-folders
-        title: Rainbow folders
-        description: Color each top-level folder in the file explorer with a different palette color.
-        type: class-toggle
-        default: false
 
     # Feature settings (checkboxes, headings, tables, folders...) go below,
     # each under its own level-1 heading. Their CSS goes in the
@@ -452,7 +446,7 @@ settings:
 }
 
 /* ---------- Workspace polish ---------- */
-/* Opt-in body classes: lynx-dim-inactive, lynx-rainbow-folders */
+/* Opt-in body class: lynx-dim-inactive */
 
 /* Active line, only while the editor has focus */
 :is(.theme-dark, .theme-light) .cm-editor.cm-focused .cm-line.cm-active {
@@ -489,22 +483,6 @@ settings:
 }
 :is(.theme-dark, .theme-light).lynx-dim-inactive .workspace-split.mod-root:has(.workspace-leaf.mod-active) .workspace-leaf:not(.mod-active) .workspace-leaf-content {
   opacity: 0.75;
-}
-
-/* Rainbow folders: top-level folders cycle through the palette */
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+1) { --kr-folder-color: var(--kr-red); }
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+2) { --kr-folder-color: var(--kr-peach); }
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+3) { --kr-folder-color: var(--kr-yellow); }
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+4) { --kr-folder-color: var(--kr-green); }
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+5) { --kr-folder-color: var(--kr-teal); }
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+6) { --kr-folder-color: var(--kr-blue); }
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+7) { --kr-folder-color: var(--kr-accent); }
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+8) { --kr-folder-color: var(--kr-pink); }
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title {
-  color: var(--kr-folder-color);
-}
-:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder > .tree-item-children {
-  --nav-indentation-guide-color: var(--kr-folder-color);
 }
 
 /* ---------- Alternate checkboxes ----------

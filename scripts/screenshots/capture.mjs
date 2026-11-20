@@ -194,7 +194,7 @@ async function main() {
     await setViewport(WIDTH, HEIGHT);
     await page.waitForFunction(() => window.app?.workspace?.layoutReady, null, { timeout: 60000 });
     await page.evaluate(async () => {
-      // Expand every folder in the file explorer so rainbow folders show.
+      // Expand every folder in the file explorer.
       const explorer = app.workspace.getLeavesOfType("file-explorer")[0].view;
       for (const item of Object.values(explorer.fileItems)) if (item.setCollapsed) await item.setCollapsed(false);
       app.workspace.rightSplit.collapse();
