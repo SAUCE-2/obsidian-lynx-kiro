@@ -1,31 +1,39 @@
 name: Release
 
-# Obsidian installs themes from the GitHub release whose tag matches
-# manifest.json's version. Bump the version in a PR; merging it releases.
+# release-please keeps a "release X.Y.Z" PR open that bumps manifest.json and
+# CHANGELOG.md from the conventional commits on main. Merging that PR tags
+# X.Y.Z and publishes the release Obsidian installs from.
 on:
   push:
     branches: [main]
-    paths: [manifest.json]
-  workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
+  actions: write
 
 jobs:
-  release:
-    if: github.ref == 'refs/heads/main'
+  release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: googleapis/release-please-action@v5
+        id: rp
 
-      - name: Release manifest version if new
+      - uses: actions/checkout@v7
+        if: steps.rp.outputs.release_created
+
+      - name: Attach theme files
+        if: steps.rp.outputs.release_created
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          version=$(jq -r .version manifest.json)
-          if gh release view "$version" >/dev/null 2>&1; then
-            echo "Release $version already exists."
-            exit 0
-          fi
-          gh release create "$version" theme.css manifest.json \
-            --title "$version" --generate-notes --target "$GITHUB_SHA"
+          TAG: ${{ steps.rp.outputs.tag_name }}
+        run: gh release upload "$TAG" theme.css manifest.json --clobber
+
+      # PRs opened with GITHUB_TOKEN don't trigger workflows, so run CI on the
+      # release PR by hand; otherwise its required checks never report.
+      - name: Run CI on the release PR
+        if: steps.rp.outputs.pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ fromJSON(steps.rp.outputs.pr).headBranchName }}
+        run: gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref "$BRANCH"

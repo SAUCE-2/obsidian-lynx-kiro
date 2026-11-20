@@ -2,8 +2,10 @@ name: CI
 
 on:
   pull_request:
+    types: [opened, edited, synchronize, reopened]
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -29,3 +31,19 @@ jobs:
 
       - name: Lint theme.css
         run: npx --yes stylelint@16 theme.css
+
+  # PRs are squash-merged with the PR title as the commit message, so the
+  # title is what release-please reads. Skipped (which passes) outside PRs.
+  pr-title:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title is a conventional commit
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          re='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._/-]+\))?!?: .+'
+          if [[ ! "$TITLE" =~ $re ]]; then
+            echo "::error::PR title must be a conventional commit, e.g. 'fix: callout title contrast' or 'feat(canvas): style group labels'. Got: $TITLE"
+            exit 1
+          fi

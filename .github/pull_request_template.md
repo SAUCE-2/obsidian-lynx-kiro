@@ -9,4 +9,4 @@
 ## Checklist
 
 - [ ] Tested in Obsidian (dark mode)
-- [ ] Bumped `version` in `manifest.json` if this should ship as a new release
+- [ ] PR title is a [conventional commit](https://www.conventionalcommits.org) (`fix:` → patch, `feat:` → minor)
