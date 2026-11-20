@@ -4,13 +4,41 @@ A dark purple Obsidian theme, ported from the **Lynx Kiro** variant of [Lynx The
 
 ![Lynx Kiro screenshot](screenshot-full.png)
 
-Dark mode only.
+Dark and light mode.
+
+## Screenshots
+
+Captured from a real Obsidian with the [demo vault](demo-vault); see [scripts/screenshots](scripts/screenshots) to regenerate them.
+
+| Live Preview | Reading view |
+| :---: | :---: |
+| ![Showcase note in Live Preview](screenshots/editor-live-preview.png) | ![Showcase note in reading view, lists and tasks](screenshots/reading-view.png) |
+| **Light mode** | **Alternate checkboxes** |
+| ![Showcase note in light mode](screenshots/light-mode.png) | ![All 20 alternate checkbox styles](screenshots/checkboxes.png) |
+| **Callouts** | **Code blocks** |
+| ![Every callout type](screenshots/callouts.png) | ![TypeScript, Python and TOML code blocks](screenshots/code-blocks.png) |
+| **Graph view** | **Canvas** |
+| ![Graph view of the demo vault](screenshots/graph-view.png) | ![Canvas with colored cards](screenshots/canvas.png) |
+| **Command palette** | **Settings** |
+| ![Command palette](screenshots/command-palette.png) | ![Settings, Appearance tab](screenshots/settings.png) |
 
 ## Install
 
-1. Download `theme.css` and `manifest.json` from this repo (or the latest release).
-2. Put them in `<your vault>/.obsidian/themes/Lynx Kiro/`.
-3. In Obsidian: **Settings → Appearance → Themes → Lynx Kiro**, and switch to dark mode.
+### From Obsidian (once the theme is listed in the community directory)
+
+1. **Settings → Appearance → Themes → Manage**.
+2. Search for "Lynx Kiro", then click **Install and use**.
+3. Done. Lynx Kiro has dark and light variants and follows your Obsidian mode.
+
+### Manually
+
+1. Download `theme.css` and `manifest.json` from the [latest release](https://github.com/SAUCE-2/obsidian-lynx-kiro/releases/latest).
+2. Put them in a folder named exactly `Lynx Kiro` inside `<your vault>/.obsidian/themes/`. To find that folder, click the folder icon in **Settings → Appearance → Themes**.
+3. Back in **Themes**, click the reload icon and pick **Lynx Kiro**.
+
+### Updating
+
+Community installs update from **Settings → Appearance → Check for updates**. For a manual install, download the two files again and replace the old ones.
 
 ## Contributing
 

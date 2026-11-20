@@ -1,4 +1,134 @@
-/* Lynx Kiro for Obsidian, ported from bastndev/Lynx-Theme-Pro (06_Lynx-Kiro-theme). Dark only. */
+/* Lynx Kiro for Obsidian, ported from bastndev/Lynx-Theme-Pro (06_Lynx-Kiro-theme). Dark and light. */
+
+/* @settings
+
+name: Lynx Kiro
+id: lynx-kiro
+settings:
+    -
+        id: lynx-colors
+        title: Colors
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: lynx-accent
+        title: Accent color
+        description: Links, active items, tags, buttons and the H2 color. Purple is the original Kiro look.
+        type: class-select
+        allowEmpty: false
+        default: lynx-accent-purple
+        options:
+            -
+                label: Purple (Kiro)
+                value: lynx-accent-purple
+            -
+                label: Teal
+                value: lynx-accent-teal
+            -
+                label: Pink
+                value: lynx-accent-pink
+            -
+                label: Blue
+                value: lynx-accent-blue
+            -
+                label: Custom (pick below)
+                value: lynx-accent-custom
+    -
+        id: lynx-accent-custom
+        title: Custom accent color
+        description: Used when the accent color is set to Custom.
+        type: variable-color
+        format: hex
+        default: '#a78bfa'
+    -
+        id: lynx-background
+        title: Background contrast
+        type: class-select
+        allowEmpty: false
+        default: lynx-bg-default
+        options:
+            -
+                label: Default
+                value: lynx-bg-default
+            -
+                label: Darker
+                value: lynx-bg-darker
+            -
+                label: Softer
+                value: lynx-bg-softer
+    -
+        id: lynx-headings
+        title: Heading colors
+        type: class-select
+        allowEmpty: false
+        default: lynx-headings-rainbow
+        options:
+            -
+                label: Rainbow (one color per level)
+                value: lynx-headings-rainbow
+            -
+                label: Accent color
+                value: lynx-headings-accent
+            -
+                label: Monochrome
+                value: lynx-headings-mono
+    -
+        id: lynx-plain-emphasis
+        title: Plain bold and italic
+        description: Bold and italic text use the normal text color instead of pink and blue.
+        type: class-toggle
+        default: false
+    -
+        id: lynx-layout
+        title: Layout and fonts
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: file-line-width
+        title: Readable line width
+        description: Maximum width of a note when "Readable line length" is on.
+        type: variable-number
+        default: 700
+        format: px
+    -
+        id: font-text-theme
+        title: Text font
+        description: Font for note text, e.g. Inter, sans-serif. Leave empty for the default. Obsidian's own font setting wins if set.
+        type: variable-text
+        default: ''
+    -
+        id: font-monospace-theme
+        title: Code font
+        description: Font for code, e.g. JetBrains Mono, monospace. Leave empty for the default. Obsidian's own font setting wins if set.
+        type: variable-text
+        default: ''
+
+    -
+        id: lynx-workspace
+        title: Workspace
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: lynx-dim-inactive
+        title: Dim inactive panes
+        description: Fade editor panes you're not working in.
+        type: class-toggle
+        default: false
+    -
+        id: lynx-rainbow-folders
+        title: Rainbow folders
+        description: Color each top-level folder in the file explorer with a different palette color.
+        type: class-toggle
+        default: false
+
+    # Feature settings (checkboxes, headings, tables, folders...) go below,
+    # each under its own level-1 heading. Their CSS goes in the
+    # "Style Settings" section at the end of this file.
+
+*/
 
 .theme-dark {
   /* ---------- Palette ---------- */
@@ -30,6 +160,22 @@
   --kr-magenta: #f060a0;
   --kr-red: #f07080;
 
+  /* ---------- Palette RGB triplets (callouts, canvas, plugins) ---------- */
+  /* Same colors as the --color-* hex values above; CSS can't derive these from hex. */
+  --color-red-rgb: 240, 112, 128;
+  --color-orange-rgb: 232, 200, 128;
+  --color-yellow-rgb: 232, 197, 71;
+  --color-green-rgb: 93, 186, 120;
+  --color-cyan-rgb: 64, 212, 184;
+  --color-blue-rgb: 110, 200, 245;
+  --color-purple-rgb: 167, 139, 250;
+  --color-pink-rgb: 240, 160, 200;
+}
+
+/* Everything below reads the --kr-* palette, so it serves both modes;
+   .theme-light further down swaps the palette and a few mode-specific values. */
+.theme-dark,
+.theme-light {
   /* ---------- Obsidian base scale ---------- */
   --color-base-00: var(--kr-bg-darkest);
   --color-base-05: var(--kr-bg-dark);
@@ -69,8 +215,8 @@
   --background-modifier-border: var(--kr-border);
   --background-modifier-border-hover: var(--kr-border-strong);
   --background-modifier-border-focus: var(--kr-accent);
-  --background-modifier-hover: rgba(167, 139, 250, 0.08);
-  --background-modifier-active-hover: rgba(167, 139, 250, 0.16);
+  --background-modifier-hover: color-mix(in srgb, var(--kr-accent) 8%, transparent);
+  --background-modifier-active-hover: color-mix(in srgb, var(--kr-accent) 16%, transparent);
   --background-modifier-form-field: var(--kr-bg-float);
   --background-modifier-error: var(--kr-red);
   --background-modifier-success: var(--kr-green);
@@ -94,8 +240,8 @@
   --text-error: var(--kr-red);
   --text-success: var(--kr-green);
   --text-warning: var(--kr-yellow);
-  --text-selection: rgba(124, 58, 237, 0.35);
-  --text-highlight-bg: rgba(232, 197, 71, 0.22);
+  --text-selection: color-mix(in srgb, var(--kr-accent-strong) 35%, transparent);
+  --text-highlight-bg: color-mix(in srgb, var(--kr-yellow) 22%, transparent);
   --interactive-accent: var(--kr-accent-strong);
   --interactive-accent-hover: var(--kr-accent-hover);
   --interactive-normal: var(--kr-bg-float);
@@ -117,13 +263,37 @@
   --link-external-color-hover: var(--kr-teal);
   --link-unresolved-color: var(--kr-faint);
   --tag-color: var(--kr-lavender);
-  --tag-background: rgba(167, 139, 250, 0.12);
-  --tag-background-hover: rgba(167, 139, 250, 0.2);
+  --tag-background: color-mix(in srgb, var(--kr-accent) 12%, transparent);
+  --tag-background-hover: color-mix(in srgb, var(--kr-accent) 20%, transparent);
   --blockquote-border-color: var(--kr-accent-strong);
   --hr-color: var(--kr-border-strong);
   --checkbox-color: var(--kr-accent-strong);
   --checkbox-border-color: var(--kr-faint);
   --list-marker-color: var(--kr-muted);
+
+  /* ---------- Headings: type scale ---------- */
+  --h1-size: 2em;
+  --h2-size: 1.6em;
+  --h3-size: 1.3em;
+  --h4-size: 1.15em;
+  --h5-size: 1em;
+  --h6-size: 0.9em;
+  --h1-weight: 700;
+  --h2-weight: 700;
+  --h3-weight: 600;
+  --h4-weight: 600;
+  --h5-weight: 600;
+  --h6-weight: 600;
+  --h1-line-height: 1.2;
+  --h2-line-height: 1.25;
+  --h3-line-height: 1.3;
+  --h4-line-height: 1.4;
+  --h5-line-height: 1.5;
+  --h6-line-height: 1.5;
+  --inline-title-size: var(--h1-size);
+  --inline-title-weight: var(--h1-weight);
+  --inline-title-line-height: var(--h1-line-height);
+  --inline-title-color: var(--h1-color);
 
   /* ---------- Code (matches Kiro's syntax colors) ---------- */
   --code-background: var(--kr-bg-float);
@@ -151,10 +321,49 @@
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: rgba(96, 64, 160, 0.4);
   --scrollbar-active-thumb-bg: rgba(96, 64, 160, 0.6);
+
+
+  /* ---------- Tables, embeds, properties, blockquotes ---------- */
+  --table-border-color: var(--kr-border);
+  --table-header-background: var(--kr-bg-float);
+  --table-header-background-hover: var(--kr-bg-highlight);
+  --table-header-border-color: var(--kr-border-strong);
+  --table-header-color: var(--kr-lavender);
+  --table-header-weight: 600;
+  --table-text-color: var(--kr-fg);
+  --table-row-alt-background: var(--kr-bg-dark);
+  --table-row-alt-background-hover: color-mix(in srgb, var(--kr-accent) 8%, transparent);
+  --table-row-background-hover: color-mix(in srgb, var(--kr-accent) 8%, transparent);
+  --table-selection: color-mix(in srgb, var(--kr-accent-strong) 20%, transparent);
+  --table-selection-border-color: var(--kr-accent);
+  --table-drag-handle-color: var(--kr-muted);
+  --table-drag-handle-color-active: var(--kr-accent);
+  --table-drag-handle-background-active: var(--kr-accent-strong);
+  --table-add-button-border-color: var(--kr-border);
+  --embed-background: color-mix(in srgb, var(--kr-accent) 4%, transparent);
+  --embed-border-start: 2px solid var(--kr-accent-strong);
+  --embed-border-end: none;
+  --embed-border-top: none;
+  --embed-border-bottom: none;
+  --blockquote-background-color: color-mix(in srgb, var(--kr-accent) 6%, transparent);
+  --blockquote-color: var(--kr-fg-mid);
+  --metadata-border-color: var(--kr-border);
+  --metadata-divider-color: var(--kr-border);
+  --metadata-divider-color-hover: var(--kr-border-strong);
+  --metadata-divider-color-focus: var(--kr-accent);
+  --metadata-label-text-color: var(--kr-fg-dark);
+  --metadata-label-text-color-hover: var(--kr-lavender);
+  --metadata-label-background-hover: var(--kr-bg-highlight);
+  --metadata-label-background-active: var(--kr-bg-highlight);
+  --metadata-input-text-color: var(--kr-fg);
+  --metadata-input-background-hover: var(--kr-bg-highlight);
+  --metadata-input-background-active: var(--kr-bg-highlight);
+  --metadata-property-background-hover: color-mix(in srgb, var(--kr-accent) 6%, transparent);
+  --metadata-property-background-active: color-mix(in srgb, var(--kr-accent) 10%, transparent);
 }
 
 .theme-dark ::selection {
-  background: rgba(124, 58, 237, 0.35);
+  background: color-mix(in srgb, var(--kr-accent-strong) 35%, transparent);
 }
 
 /* ---------- TOML (Lynx 5.4.0), reading view / Prism ---------- */
@@ -166,6 +375,138 @@
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
 
+/* ---------- Style Settings ---------- */
+/* Classes and variables from the @settings block at the top. With no settings changed, nothing here applies. */
+
+/* Accent presets: each sets --lynx-accent; the shared rule below derives the rest from it. */
+:is(.theme-dark, .theme-light).lynx-accent-teal { --lynx-accent: var(--kr-teal); --accent-h: 169; --accent-s: 63%; --accent-l: 54%; }
+:is(.theme-dark, .theme-light).lynx-accent-pink { --lynx-accent: var(--kr-pink); --accent-h: 330; --accent-s: 73%; --accent-l: 78%; }
+:is(.theme-dark, .theme-light).lynx-accent-blue { --lynx-accent: var(--kr-blue); --accent-h: 200; --accent-s: 87%; --accent-l: 70%; }
+/* Unset picker falls back to the Kiro purple (--kr-accent). */
+:is(.theme-dark, .theme-light).lynx-accent-custom { --lynx-accent: var(--lynx-accent-custom, #a78bfa); }
+
+:is(.theme-dark, .theme-light).lynx-accent-teal,
+:is(.theme-dark, .theme-light).lynx-accent-pink,
+:is(.theme-dark, .theme-light).lynx-accent-blue,
+:is(.theme-dark, .theme-light).lynx-accent-custom {
+  --kr-accent: var(--lynx-accent);
+  --kr-accent-strong: color-mix(in srgb, var(--lynx-accent) 60%, black);
+  --kr-accent-hover: color-mix(in srgb, var(--lynx-accent) 80%, black);
+  --kr-lavender: color-mix(in srgb, var(--lynx-accent) 70%, white);
+  --color-accent-2: color-mix(in srgb, var(--lynx-accent) 50%, white);
+  --background-modifier-hover: color-mix(in srgb, var(--lynx-accent) 8%, transparent);
+  --background-modifier-active-hover: color-mix(in srgb, var(--lynx-accent) 16%, transparent);
+  --tag-background: color-mix(in srgb, var(--lynx-accent) 12%, transparent);
+  --tag-background-hover: color-mix(in srgb, var(--lynx-accent) 20%, transparent);
+  --text-selection: color-mix(in srgb, var(--kr-accent-strong) 35%, transparent);
+  --graph-line: color-mix(in srgb, var(--lynx-accent) 55%, var(--kr-bg));
+  --scrollbar-thumb-bg: color-mix(in srgb, var(--kr-accent-strong) 40%, transparent);
+  --scrollbar-active-thumb-bg: color-mix(in srgb, var(--kr-accent-strong) 60%, transparent);
+}
+
+:is(.theme-dark, .theme-light).lynx-accent-teal ::selection,
+:is(.theme-dark, .theme-light).lynx-accent-pink ::selection,
+:is(.theme-dark, .theme-light).lynx-accent-blue ::selection,
+:is(.theme-dark, .theme-light).lynx-accent-custom ::selection {
+  background: var(--text-selection);
+}
+
+/* Background contrast. Each override is built only from palette vars it doesn't change. */
+:is(.theme-dark, .theme-light).lynx-bg-darker {
+  --kr-bg: var(--kr-bg-darkest);
+  --kr-bg-dark: color-mix(in srgb, var(--kr-bg-darkest) 70%, black);
+  --kr-bg-float: color-mix(in srgb, var(--kr-bg-highlight) 40%, var(--kr-bg-darkest));
+  --color-base-00: var(--kr-bg-dark);
+  --background-secondary-alt: var(--kr-bg-dark);
+}
+
+:is(.theme-dark, .theme-light).lynx-bg-softer {
+  --kr-bg: color-mix(in srgb, var(--kr-bg-highlight) 55%, var(--kr-bg-darkest));
+  --kr-bg-dark: color-mix(in srgb, var(--kr-bg-highlight) 40%, var(--kr-bg-darkest));
+  --kr-bg-float: color-mix(in srgb, var(--kr-bg-highlight) 85%, var(--kr-bg-darkest));
+}
+
+/* Heading colors */
+:is(.theme-dark, .theme-light).lynx-headings-accent {
+  --h1-color: var(--kr-accent);
+  --h2-color: var(--kr-accent);
+  --h3-color: var(--kr-accent);
+  --h4-color: var(--kr-accent);
+  --h5-color: var(--kr-accent);
+  --h6-color: var(--kr-accent);
+}
+
+:is(.theme-dark, .theme-light).lynx-headings-mono {
+  --h1-color: var(--text-normal);
+  --h2-color: var(--text-normal);
+  --h3-color: var(--text-normal);
+  --h4-color: var(--text-normal);
+  --h5-color: var(--text-normal);
+  --h6-color: var(--text-normal);
+}
+
+/* Plain bold and italic */
+:is(.theme-dark, .theme-light).lynx-plain-emphasis {
+  --bold-color: inherit;
+  --italic-color: inherit;
+}
+
+/* ---------- Workspace polish ---------- */
+/* Opt-in body classes: lynx-dim-inactive, lynx-rainbow-folders */
+
+/* Active line, only while the editor has focus */
+:is(.theme-dark, .theme-light) .cm-editor.cm-focused .cm-line.cm-active {
+  background-color: color-mix(in srgb, var(--kr-accent) 6%, transparent);
+  box-shadow: inset 2px 0 0 color-mix(in srgb, var(--kr-accent) 35%, transparent);
+}
+
+/* Tabs */
+:is(.theme-dark, .theme-light) {
+  --tab-background-active: var(--kr-bg);
+  --tab-text-color: var(--kr-muted);
+  --tab-text-color-active: var(--kr-fg-dark);
+  --tab-text-color-focused: var(--kr-fg-dark);
+  --tab-text-color-focused-active: var(--kr-fg);
+  --tab-text-color-focused-active-current: var(--kr-fg);
+  --tab-text-color-focused-highlighted: var(--kr-lavender);
+  --tab-divider-color: var(--kr-border);
+  --tab-outline-color: var(--kr-border);
+}
+:is(.theme-dark, .theme-light) .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
+  background-color: var(--background-modifier-hover);
+  color: var(--kr-fg-mid);
+}
+:is(.theme-dark, .theme-light) .workspace-tab-header.is-active .workspace-tab-header-inner {
+  box-shadow: inset 0 2px 0 var(--kr-border-strong);
+}
+:is(.theme-dark, .theme-light) .workspace-tabs.mod-active .workspace-tab-header.is-active .workspace-tab-header-inner {
+  box-shadow: inset 0 2px 0 var(--kr-accent);
+}
+
+/* Dim inactive panes (main area only; skipped while a sidebar has focus) */
+:is(.theme-dark, .theme-light).lynx-dim-inactive .workspace-split.mod-root .workspace-leaf-content {
+  transition: opacity 150ms ease-in-out;
+}
+:is(.theme-dark, .theme-light).lynx-dim-inactive .workspace-split.mod-root:has(.workspace-leaf.mod-active) .workspace-leaf:not(.mod-active) .workspace-leaf-content {
+  opacity: 0.75;
+}
+
+/* Rainbow folders: top-level folders cycle through the palette */
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+1) { --kr-folder-color: var(--kr-red); }
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+2) { --kr-folder-color: var(--kr-peach); }
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+3) { --kr-folder-color: var(--kr-yellow); }
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+4) { --kr-folder-color: var(--kr-green); }
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+5) { --kr-folder-color: var(--kr-teal); }
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+6) { --kr-folder-color: var(--kr-blue); }
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+7) { --kr-folder-color: var(--kr-accent); }
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+8) { --kr-folder-color: var(--kr-pink); }
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title {
+  color: var(--kr-folder-color);
+}
+:is(.theme-dark, .theme-light).lynx-rainbow-folders .nav-files-container > div > .tree-item.nav-folder > .tree-item-children {
+  --nav-indentation-guide-color: var(--kr-folder-color);
+}
+
 /* ---------- Alternate checkboxes ----------
    - [/] in progress   - [-] cancelled   - [>] forwarded   - [<] scheduled
    - [?] question      - [!] important   - [*] star        - ["] quote
@@ -175,12 +516,12 @@
    Every state is a solid box with a dark icon, like [x].
    Only [x] and [-] strike through the text. */
 
-.theme-dark :is(input:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked {
+:is(.theme-dark, .theme-light) :is(input:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked {
   background-color: var(--kr-task-color);
   border-color: var(--kr-task-color);
 }
 
-.theme-dark :is(input:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked::after {
+:is(.theme-dark, .theme-light) :is(input:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked::after {
   background-color: var(--kr-bg-darkest);
   -webkit-mask-image: var(--kr-task-icon);
   mask-image: var(--kr-task-icon);
@@ -190,124 +531,582 @@
   mask-position: center;
 }
 
-.theme-dark .markdown-rendered li.task-list-item.is-checked:is([data-task="/"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]),
-.theme-dark .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line:is([data-task="/"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) {
+:is(.theme-dark, .theme-light) .markdown-rendered li.task-list-item.is-checked:is([data-task="/"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]),
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line:is([data-task="/"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) {
   color: var(--text-normal);
   text-decoration: none;
 }
 
-.theme-dark .markdown-rendered li.task-list-item[data-task="-"],
-.theme-dark .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line[data-task="-"] {
+:is(.theme-dark, .theme-light) .markdown-rendered li.task-list-item[data-task="-"],
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line[data-task="-"] {
   color: var(--checklist-done-color);
   text-decoration: var(--checklist-done-decoration);
 }
 
-.theme-dark :is(input[data-task="x"], li[data-task="x"] > input, li[data-task="x"] > p > input).task-list-item-checkbox { /* done */
+:is(.theme-dark, .theme-light) :is(input[data-task="x"], li[data-task="x"] > input, li[data-task="x"] > p > input).task-list-item-checkbox { /* done */
   --kr-task-color: var(--kr-accent);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="X"], li[data-task="X"] > input, li[data-task="X"] > p > input).task-list-item-checkbox { /* done */
+:is(.theme-dark, .theme-light) :is(input[data-task="X"], li[data-task="X"] > input, li[data-task="X"] > p > input).task-list-item-checkbox { /* done */
   --kr-task-color: var(--kr-accent);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="/"], li[data-task="/"] > input, li[data-task="/"] > p > input).task-list-item-checkbox { /* in progress */
+:is(.theme-dark, .theme-light) :is(input[data-task="/"], li[data-task="/"] > input, li[data-task="/"] > p > input).task-list-item-checkbox { /* in progress */
   --kr-task-color: var(--kr-yellow);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12h.01M12 12h.01M18 12h.01' stroke-width='4.5'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="-"], li[data-task="-"] > input, li[data-task="-"] > p > input).task-list-item-checkbox { /* cancelled */
+:is(.theme-dark, .theme-light) :is(input[data-task="-"], li[data-task="-"] > input, li[data-task="-"] > p > input).task-list-item-checkbox { /* cancelled */
   --kr-task-color: var(--kr-faint);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task=">"], li[data-task=">"] > input, li[data-task=">"] > p > input).task-list-item-checkbox { /* forwarded */
+:is(.theme-dark, .theme-light) :is(input[data-task=">"], li[data-task=">"] > input, li[data-task=">"] > p > input).task-list-item-checkbox { /* forwarded */
   --kr-task-color: var(--kr-blue);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="<"], li[data-task="<"] > input, li[data-task="<"] > p > input).task-list-item-checkbox { /* scheduled */
+:is(.theme-dark, .theme-light) :is(input[data-task="<"], li[data-task="<"] > input, li[data-task="<"] > p > input).task-list-item-checkbox { /* scheduled */
   --kr-task-color: var(--kr-teal);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='5' width='16' height='15' rx='2'/%3E%3Cpath d='M4 10h16M9 3v4M15 3v4'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="?"], li[data-task="?"] > input, li[data-task="?"] > p > input).task-list-item-checkbox { /* question */
+:is(.theme-dark, .theme-light) :is(input[data-task="?"], li[data-task="?"] > input, li[data-task="?"] > p > input).task-list-item-checkbox { /* question */
   --kr-task-color: var(--kr-yellow);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 9a3 3 0 1 1 4 2.8c-.7.3-1 1-1 1.7V14'/%3E%3Cpath d='M12 19h.01'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="!"], li[data-task="!"] > input, li[data-task="!"] > p > input).task-list-item-checkbox { /* important */
+:is(.theme-dark, .theme-light) :is(input[data-task="!"], li[data-task="!"] > input, li[data-task="!"] > p > input).task-list-item-checkbox { /* important */
   --kr-task-color: var(--kr-red);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v9M12 19h.01'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="*"], li[data-task="*"] > input, li[data-task="*"] > p > input).task-list-item-checkbox { /* star */
+:is(.theme-dark, .theme-light) :is(input[data-task="*"], li[data-task="*"] > input, li[data-task="*"] > p > input).task-list-item-checkbox { /* star */
   --kr-task-color: var(--kr-yellow);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath fill='black' stroke-width='1.5' d='M12 3l2.7 5.6 6.1.8-4.5 4.3 1.1 6.1L12 16.9l-5.4 2.9 1.1-6.1-4.5-4.3 6.1-.8z'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task='"'], li[data-task='"'] > input, li[data-task='"'] > p > input).task-list-item-checkbox { /* quote */
+:is(.theme-dark, .theme-light) :is(input[data-task='"'], li[data-task='"'] > input, li[data-task='"'] > p > input).task-list-item-checkbox { /* quote */
   --kr-task-color: var(--kr-fg-dark);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 7H6v5h4v1c0 2-1 3-3 4M19 7h-4v5h4v1c0 2-1 3-3 4'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="l"], li[data-task="l"] > input, li[data-task="l"] > p > input).task-list-item-checkbox { /* location */
+:is(.theme-dark, .theme-light) :is(input[data-task="l"], li[data-task="l"] > input, li[data-task="l"] > p > input).task-list-item-checkbox { /* location */
   --kr-task-color: var(--kr-pink);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="b"], li[data-task="b"] > input, li[data-task="b"] > p > input).task-list-item-checkbox { /* bookmark */
+:is(.theme-dark, .theme-light) :is(input[data-task="b"], li[data-task="b"] > input, li[data-task="b"] > p > input).task-list-item-checkbox { /* bookmark */
   --kr-task-color: var(--kr-peach);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 4h10v16l-5-4-5 4z'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="i"], li[data-task="i"] > input, li[data-task="i"] > p > input).task-list-item-checkbox { /* information */
+:is(.theme-dark, .theme-light) :is(input[data-task="i"], li[data-task="i"] > input, li[data-task="i"] > p > input).task-list-item-checkbox { /* information */
   --kr-task-color: var(--kr-blue);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 11v7M12 6h.01'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="S"], li[data-task="S"] > input, li[data-task="S"] > p > input).task-list-item-checkbox { /* savings */
+:is(.theme-dark, .theme-light) :is(input[data-task="S"], li[data-task="S"] > input, li[data-task="S"] > p > input).task-list-item-checkbox { /* savings */
   --kr-task-color: var(--kr-green);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v18M16.5 7.5c-.6-1.5-2.3-2.5-4.5-2.5-2.5 0-4.5 1.4-4.5 3.4 0 4.6 9 2.6 9 7.2 0 2-2 3.4-4.5 3.4-2.2 0-3.9-1-4.5-2.5'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="I"], li[data-task="I"] > input, li[data-task="I"] > p > input).task-list-item-checkbox { /* idea */
+:is(.theme-dark, .theme-light) :is(input[data-task="I"], li[data-task="I"] > input, li[data-task="I"] > p > input).task-list-item-checkbox { /* idea */
   --kr-task-color: var(--kr-yellow);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="p"], li[data-task="p"] > input, li[data-task="p"] > p > input).task-list-item-checkbox { /* pro */
+:is(.theme-dark, .theme-light) :is(input[data-task="p"], li[data-task="p"] > input, li[data-task="p"] > p > input).task-list-item-checkbox { /* pro */
   --kr-task-color: var(--kr-green);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="c"], li[data-task="c"] > input, li[data-task="c"] > p > input).task-list-item-checkbox { /* con */
+:is(.theme-dark, .theme-light) :is(input[data-task="c"], li[data-task="c"] > input, li[data-task="c"] > p > input).task-list-item-checkbox { /* con */
   --kr-task-color: var(--kr-red);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="f"], li[data-task="f"] > input, li[data-task="f"] > p > input).task-list-item-checkbox { /* fire */
+:is(.theme-dark, .theme-light) :is(input[data-task="f"], li[data-task="f"] > input, li[data-task="f"] > p > input).task-list-item-checkbox { /* fire */
   --kr-task-color: var(--kr-magenta);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5.3 1.5 1 2.5 2 3 0-3-1-5.5 1-8.5z'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="k"], li[data-task="k"] > input, li[data-task="k"] > p > input).task-list-item-checkbox { /* key */
+:is(.theme-dark, .theme-light) :is(input[data-task="k"], li[data-task="k"] > input, li[data-task="k"] > p > input).task-list-item-checkbox { /* key */
   --kr-task-color: var(--kr-peach);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='15' r='4'/%3E%3Cpath d='M11 12l8-8M16 7l2 2M14 9l2 2'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="w"], li[data-task="w"] > input, li[data-task="w"] > p > input).task-list-item-checkbox { /* win */
+:is(.theme-dark, .theme-light) :is(input[data-task="w"], li[data-task="w"] > input, li[data-task="w"] > p > input).task-list-item-checkbox { /* win */
   --kr-task-color: var(--kr-accent);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 4h8v5a4 4 0 0 1-8 0zM8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8 20h8'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="u"], li[data-task="u"] > input, li[data-task="u"] > p > input).task-list-item-checkbox { /* up */
+:is(.theme-dark, .theme-light) :is(input[data-task="u"], li[data-task="u"] > input, li[data-task="u"] > p > input).task-list-item-checkbox { /* up */
   --kr-task-color: var(--kr-green);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 17l6-6 4 4 6-7M15 8h5v5'/%3E%3C/svg%3E");
 }
 
-.theme-dark :is(input[data-task="d"], li[data-task="d"] > input, li[data-task="d"] > p > input).task-list-item-checkbox { /* down */
+:is(.theme-dark, .theme-light) :is(input[data-task="d"], li[data-task="d"] > input, li[data-task="d"] > p > input).task-list-item-checkbox { /* down */
   --kr-task-color: var(--kr-red);
   --kr-task-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7l6 6 4-4 6 7M15 16h5v-5'/%3E%3C/svg%3E");
+}
+
+/* ---------- Tables, highlights, footnotes, properties ---------- */
+:is(.theme-dark, .theme-light) .markdown-rendered mark,
+:is(.theme-dark, .theme-light) .cm-s-obsidian span.cm-highlight {
+  color: var(--kr-fg);
+  border-radius: 2px;
+}
+:is(.theme-dark, .theme-light) .footnote-link,
+:is(.theme-dark, .theme-light) .cm-s-obsidian span.cm-footref {
+  color: var(--kr-accent);
+}
+:is(.theme-dark, .theme-light) .footnote-link:hover {
+  color: var(--kr-lavender);
+}
+:is(.theme-dark, .theme-light) section.footnotes {
+  color: var(--kr-fg-dark);
+}
+:is(.theme-dark, .theme-light) .footnotes-sep {
+  border-color: var(--kr-border);
+}
+:is(.theme-dark, .theme-light) .footnote-backref {
+  color: var(--kr-muted);
+}
+:is(.theme-dark, .theme-light) .footnote-backref:hover {
+  color: var(--kr-accent);
+}
+:is(.theme-dark, .theme-light) .metadata-property-icon {
+  color: var(--kr-faint);
+}
+:is(.theme-dark, .theme-light) .metadata-property:hover .metadata-property-icon {
+  color: var(--kr-accent);
+}
+
+/* ---------- Community plugins ---------- */
+
+/* Kanban (mgmeyers/obsidian-kanban) */
+:is(.theme-dark, .theme-light) .kanban-plugin__lane { border-color: var(--kr-border); }
+:is(.theme-dark, .theme-light) .kanban-plugin__lane-header-wrapper { border-bottom-color: var(--kr-border-strong); }
+:is(.theme-dark, .theme-light) .kanban-plugin__lane-title { color: var(--kr-keyword); }
+:is(.theme-dark, .theme-light) div.kanban-plugin__lane-title-count { color: var(--kr-faint); }
+:is(.theme-dark, .theme-light) .kanban-plugin__item { border-color: var(--kr-border); }
+:is(.theme-dark, .theme-light) .kanban-plugin__item:hover { border-color: var(--kr-border-strong); }
+:is(.theme-dark, .theme-light) .kanban-plugin__item-title-wrapper:not(:only-child) { border-bottom-color: var(--kr-border); }
+:is(.theme-dark, .theme-light) .kanban-plugin__item-metadata-wrapper:not(:empty) { background-color: var(--kr-bg-dark); }
+:is(.theme-dark, .theme-light) .kanban-plugin__item-metadata { color: var(--kr-fg-dark); }
+:is(.theme-dark, .theme-light) .kanban-plugin__item-metadata-date,
+:is(.theme-dark, .theme-light) .kanban-plugin__item-metadata-time,
+:is(.theme-dark, .theme-light) .kanban-plugin__preview-date,
+:is(.theme-dark, .theme-light) .kanban-plugin__preview-time { color: var(--date-color, var(--kr-blue)); }
+:is(.theme-dark, .theme-light) .kanban-plugin__item-metadata-date-relative { color: var(--kr-faint); }
+:is(.theme-dark, .theme-light) .kanban-plugin__item-task-inline-metadata-item { background-color: var(--kr-bg-float); }
+
+/* Dataview (blacksmithgu/obsidian-dataview) */
+:is(.theme-dark, .theme-light) .table-view-table > thead > tr > th { color: var(--table-header-color); border-bottom-color: var(--kr-border-strong); }
+:is(.theme-dark, .theme-light) .dataview.small-text { color: var(--kr-muted); }
+:is(.theme-dark, .theme-light) .dataview.inline-field-key { background-color: var(--kr-bg-highlight); color: var(--kr-blue); border-radius: 4px 0 0 4px; }
+:is(.theme-dark, .theme-light) .dataview.inline-field-value { background-color: var(--kr-bg-float); color: var(--kr-fg); border-radius: 0 4px 4px 0; }
+:is(.theme-dark, .theme-light) .dataview.inline-field-standalone-value { background-color: var(--kr-bg-float); color: var(--kr-fg); border-radius: 4px; }
+:is(.theme-dark, .theme-light) .dataview.task-list-item:hover,
+:is(.theme-dark, .theme-light) .dataview.task-list-basic-item:hover { background-color: var(--background-modifier-hover); box-shadow: -40px 0 0 var(--background-modifier-hover); }
+:is(.theme-dark, .theme-light) pre.dataview-error { color: var(--kr-red); background-color: color-mix(in srgb, var(--kr-red) 8%, transparent); border-left: 3px solid var(--kr-red); }
+:is(.theme-dark, .theme-light) div.dataview-error-box { border-color: var(--kr-border); }
+:is(.theme-dark, .theme-light) .dataview-error-message { color: var(--kr-faint); }
+
+/* Calendar (liamcain/obsidian-calendar-plugin) */
+:is(.theme-dark, .theme-light) #calendar-container.container {
+  --color-background-weekend: color-mix(in srgb, var(--kr-accent) 4%, transparent);
+  --color-dot: var(--kr-accent);
+  --color-arrow: var(--kr-fg-dark);
+  --color-button: var(--kr-fg-dark);
+  --color-text-title: var(--kr-keyword);
+  --color-text-heading: var(--kr-faint);
+  --color-text-day: var(--kr-fg);
+  --color-text-today: var(--kr-teal);
+  --color-text-weeknum: var(--kr-muted);
+}
+:is(.theme-dark, .theme-light) #calendar-container .today { font-weight: 700; }
+
+/* Tasks (obsidian-tasks-group/obsidian-tasks) */
+:is(.theme-dark, .theme-light) .tasks-count,
+:is(.theme-dark, .theme-light) .tasks-group-count { color: var(--kr-muted); }
+:is(.theme-dark, .theme-light) .tasks-urgency { background-color: var(--kr-bg-float); color: var(--kr-fg-mid); }
+:is(.theme-dark, .theme-light) .tasks-edit,
+:is(.theme-dark, .theme-light) .tasks-postpone { color: var(--kr-accent); }
+:is(.theme-dark, .theme-light) span.task-priority { padding: 0 0.25em; border-radius: var(--radius-s); }
+:is(.theme-dark, .theme-light) span.task-priority[data-task-priority="highest"] { background-color: color-mix(in srgb, var(--kr-red) 20%, transparent); }
+:is(.theme-dark, .theme-light) span.task-priority[data-task-priority="high"] { background-color: color-mix(in srgb, var(--kr-peach) 20%, transparent); }
+:is(.theme-dark, .theme-light) span.task-priority[data-task-priority="medium"] { background-color: color-mix(in srgb, var(--kr-yellow) 16%, transparent); }
+:is(.theme-dark, .theme-light) span.task-priority[data-task-priority="low"] { background-color: color-mix(in srgb, var(--kr-blue) 16%, transparent); }
+:is(.theme-dark, .theme-light) span.task-priority[data-task-priority="lowest"] { background-color: color-mix(in srgb, var(--kr-accent) 12%, transparent); }
+:is(.theme-dark, .theme-light) .task-created,
+:is(.theme-dark, .theme-light) .task-start,
+:is(.theme-dark, .theme-light) .task-scheduled,
+:is(.theme-dark, .theme-light) .task-done,
+:is(.theme-dark, .theme-light) .task-cancelled { color: var(--kr-fg-dark); }
+:is(.theme-dark, .theme-light) .task-due { color: var(--kr-blue); }
+:is(.theme-dark, .theme-light) .task-list-item[data-task-status-type="TODO"] .task-due[data-task-due="today"],
+:is(.theme-dark, .theme-light) .task-list-item[data-task-status-type="IN_PROGRESS"] .task-due[data-task-due="today"] { color: var(--kr-yellow); }
+:is(.theme-dark, .theme-light) .task-list-item[data-task-status-type="TODO"] .task-due[data-task-due^="past-"],
+:is(.theme-dark, .theme-light) .task-list-item[data-task-status-type="IN_PROGRESS"] .task-due[data-task-due^="past-"] { color: var(--kr-red); }
+
+/* Excalidraw (zsviczian/obsidian-excalidraw-plugin): UI chrome only, canvas untouched */
+:is(.theme-dark, .theme-light) .excalidraw.theme--dark {
+  --island-bg-color: var(--kr-bg-float);
+  --color-primary: var(--kr-accent);
+  --color-primary-darker: var(--kr-lavender);
+  --color-primary-darkest: var(--kr-keyword);
+  --color-primary-hover: var(--kr-accent-hover);
+  --color-primary-light: var(--kr-border-strong);
+  --color-primary-light-darker: var(--kr-border);
+  --color-surface-high: var(--kr-bg-highlight);
+}
+
+/* ---------- Headings ---------- */
+/* Tighter tracking on the big levels; the inline title matches H1. */
+:is(.theme-dark, .theme-light) .markdown-rendered h1,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .HyperMD-header-1,
+:is(.theme-dark, .theme-light) .inline-title { letter-spacing: -0.02em; }
+:is(.theme-dark, .theme-light) .markdown-rendered h2,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .HyperMD-header-2 { letter-spacing: -0.01em; }
+
+/* Subtle rule under H1/H2 (reading view and Live Preview). */
+:is(.theme-dark, .theme-light) .markdown-rendered h1,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-1 {
+  padding-bottom: 0.15em;
+  border-bottom: 1px solid var(--kr-border-strong);
+}
+:is(.theme-dark, .theme-light) .markdown-rendered h2,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-2 {
+  padding-bottom: 0.15em;
+  border-bottom: 1px solid var(--kr-border);
+}
+
+/* H1-H6 labels in the left margin. Net zero width (width + margins cancel out),
+   so the heading text never moves; sits left of the fold arrow. */
+:is(.theme-dark, .theme-light) .markdown-preview-sizer > [class^="el-h"] > :is(h1, h2, h3, h4, h5, h6)::before,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header::before {
+  display: inline-block;
+  width: 2.5em;
+  margin-left: calc(-2.5em - 26px);
+  margin-right: 26px;
+  text-align: right;
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--kr-muted);
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 120ms ease-in-out;
+}
+:is(.theme-dark, .theme-light) .markdown-preview-sizer > [class^="el-h"] > :is(h1, h2, h3, h4, h5, h6):hover::before,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header:hover::before { opacity: 1; }
+:is(.theme-dark, .theme-light) .markdown-preview-sizer > .el-h1 > h1::before,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-1::before { content: "H1"; }
+:is(.theme-dark, .theme-light) .markdown-preview-sizer > .el-h2 > h2::before,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-2::before { content: "H2"; }
+:is(.theme-dark, .theme-light) .markdown-preview-sizer > .el-h3 > h3::before,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-3::before { content: "H3"; }
+:is(.theme-dark, .theme-light) .markdown-preview-sizer > .el-h4 > h4::before,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-4::before { content: "H4"; }
+:is(.theme-dark, .theme-light) .markdown-preview-sizer > .el-h5 > h5::before,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-5::before { content: "H5"; }
+:is(.theme-dark, .theme-light) .markdown-preview-sizer > .el-h6 > h6::before,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-6::before { content: "H6"; }
+
+/* ---------- Code blocks & inline code ---------- */
+/* Reading view: rounded block with a subtle border */
+:is(.theme-dark, .theme-light) .markdown-rendered pre {
+  position: relative;
+  border: 1px solid var(--kr-border);
+  border-radius: var(--radius-m);
+}
+
+/* Reading view: language label, top right. Prism puts "language-<lang>" on the
+   <pre>; the monospace -9ch indent clips the "language-" prefix off attr(class). */
+:is(.theme-dark, .theme-light) .markdown-rendered pre[class^="language-"]::before {
+  content: attr(class);
+  position: absolute;
+  top: 0.5em;
+  right: 0.75em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: -9ch;
+  font-family: var(--font-monospace);
+  font-size: var(--font-smallest);
+  color: var(--kr-faint);
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+:is(.theme-dark, .theme-light) .markdown-rendered pre[class^="language-"]:hover::before {
+  opacity: 0;
+}
+
+/* Reading view: copy button (shown on hover, replaces the label) */
+:is(.theme-dark, .theme-light) .markdown-rendered button.copy-code-button {
+  background-color: var(--kr-bg-highlight);
+  border: 1px solid var(--kr-border-strong);
+  border-radius: var(--radius-s);
+  box-shadow: none;
+  color: var(--kr-fg-dark);
+}
+
+:is(.theme-dark, .theme-light) .markdown-rendered button.copy-code-button:hover {
+  background-color: var(--kr-bg-highlight);
+  border-color: var(--kr-accent);
+  color: var(--kr-accent);
+}
+
+/* Live Preview: same rounded border, drawn with inset shadows so lines don't shift */
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  box-shadow: inset 1px 0 0 var(--kr-border), inset -1px 0 0 var(--kr-border);
+}
+
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin {
+  border-radius: var(--radius-m) var(--radius-m) 0 0;
+  box-shadow: inset 1px 0 0 var(--kr-border), inset -1px 0 0 var(--kr-border), inset 0 1px 0 var(--kr-border);
+}
+
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
+  border-radius: 0 0 var(--radius-m) var(--radius-m);
+  box-shadow: inset 1px 0 0 var(--kr-border), inset -1px 0 0 var(--kr-border), inset 0 -1px 0 var(--kr-border);
+}
+
+/* Live Preview: language label on the opening fence (Obsidian renders it; click copies) */
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .code-block-flair {
+  font-family: var(--font-monospace);
+  font-size: var(--font-smallest);
+  color: var(--kr-faint);
+  border-radius: var(--radius-s);
+}
+
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .code-block-flair:hover {
+  background-color: var(--kr-bg-highlight);
+  color: var(--kr-accent);
+}
+
+/* Inline code, both views: tinted background, accent text */
+:is(.theme-dark, .theme-light) .markdown-rendered :not(pre) > code,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6 .cm-inline-code:not(.cm-formatting-code) {
+  background-color: color-mix(in srgb, var(--kr-accent) 12%, transparent);
+  color: var(--kr-lavender);
+  border-radius: var(--radius-s);
+  padding: 0.1em 0.3em;
+}
+
+/* ---------- Per-note helper classes (cssclasses frontmatter) ---------- */
+/* Obsidian adds a note's cssclasses to .markdown-source-view and .markdown-preview-view. */
+
+/* wide: ignore readable line width */
+:is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).wide {
+  --file-line-width: 100%;
+}
+
+/* table-full: tables span the full line width */
+:is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).table-full :is(table, .table-wrapper) {
+  width: 100%;
+}
+
+/* table-nowrap: keep table cells on one line */
+:is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).table-nowrap :is(th, td) {
+  white-space: nowrap;
+}
+
+/* img-grid: images in the same paragraph (reading view) or line (live preview) form a grid */
+:is(.theme-dark, .theme-light) .markdown-preview-view.img-grid p:has(> :is(img, .image-embed) ~ :is(img, .image-embed)),
+:is(.theme-dark, .theme-light) .markdown-source-view.img-grid .cm-line:has(> .image-embed ~ .image-embed) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--size-4-2);
+  align-items: start;
+}
+:is(.theme-dark, .theme-light) .markdown-preview-view.img-grid p:has(> :is(img, .image-embed) ~ :is(img, .image-embed)) > br {
+  display: none;
+}
+:is(.theme-dark, .theme-light) .markdown-source-view.img-grid .cm-line:has(> .image-embed ~ .image-embed) > .cm-widgetBuffer {
+  position: absolute;
+}
+:is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).img-grid :is(p, .cm-line) > :is(img, .image-embed),
+:is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).img-grid :is(p, .cm-line) > .image-embed img {
+  width: 100%;
+  margin: 0;
+}
+
+/* cards: Dataview TABLE results (both views) and plain tables (reading view only, so
+   Live Preview's table editor keeps working) as a card grid */
+:is(.theme-dark, .theme-light) .markdown-source-view.cards table.table-view-table,
+:is(.theme-dark, .theme-light) .markdown-preview-view.cards table {
+  display: block;
+  width: 100%;
+  border: none;
+}
+:is(.theme-dark, .theme-light) .markdown-source-view.cards table.table-view-table > thead,
+:is(.theme-dark, .theme-light) .markdown-preview-view.cards table > thead {
+  display: none;
+}
+:is(.theme-dark, .theme-light) .markdown-source-view.cards table.table-view-table > tbody,
+:is(.theme-dark, .theme-light) .markdown-preview-view.cards table > tbody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--size-4-3);
+}
+:is(.theme-dark, .theme-light) .markdown-source-view.cards table.table-view-table > tbody > tr,
+:is(.theme-dark, .theme-light) .markdown-preview-view.cards table > tbody > tr {
+  display: flex;
+  flex-direction: column;
+  padding: var(--size-4-2) var(--size-4-3);
+  background: var(--kr-bg-float);
+  border: 1px solid var(--kr-border);
+  border-radius: var(--radius-m);
+}
+:is(.theme-dark, .theme-light) .markdown-source-view.cards table.table-view-table > tbody > tr:hover,
+:is(.theme-dark, .theme-light) .markdown-preview-view.cards table > tbody > tr:hover {
+  border-color: var(--kr-border-strong);
+}
+:is(.theme-dark, .theme-light) .markdown-source-view.cards table.table-view-table > tbody > tr > td,
+:is(.theme-dark, .theme-light) .markdown-preview-view.cards table > tbody > tr > td {
+  display: block;
+  padding: var(--size-2-1) 0;
+  background: transparent;
+  border: none;
+  color: var(--kr-fg-dark);
+}
+:is(.theme-dark, .theme-light) .markdown-source-view.cards table.table-view-table > tbody > tr > td:first-child,
+:is(.theme-dark, .theme-light) .markdown-preview-view.cards table > tbody > tr > td:first-child {
+  margin-bottom: var(--size-4-1);
+  padding-bottom: var(--size-4-1);
+  border-bottom: 1px solid var(--kr-border);
+  color: var(--kr-fg);
+  font-weight: var(--font-semibold);
+}
+:is(.theme-dark, .theme-light) .markdown-source-view.cards table.table-view-table > tbody > tr > td:empty,
+:is(.theme-dark, .theme-light) .markdown-preview-view.cards table > tbody > tr > td:empty {
+  display: none;
+}
+
+/* no-props: hide the properties block */
+:is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).no-props .metadata-container {
+  display: none;
+}
+
+/* ---------- Light mode ----------
+   Lynx Theme Pro has no light Kiro variant (its Lynx Light is a green/gray palette),
+   so this is a light lavender palette derived from the Kiro hues. Text colors meet
+   WCAG AA (4.5:1) on the editor, sidebar and code backgrounds. */
+.theme-light {
+  /* Palette: same names as dark mode, so "darkest" etc. are roles, not lightness */
+  --kr-bg-darkest: #ffffff;
+  --kr-bg-dark: #f3f0fa;
+  --kr-bg: #fbfaff;
+  --kr-bg-float: #ece7f7;
+  --kr-bg-highlight: #e2daf2;
+  --kr-border: #ddd5ec;
+  --kr-border-strong: #c9bde0;
+  --kr-comment: #766b8b;
+  --kr-muted: #6f6487;
+  --kr-faint: #665b7e;
+  --kr-fg-dark: #554a6b;
+  --kr-fg-mid: #43395a;
+  --kr-fg: #221b30;
+  --kr-accent: #7c3aed;
+  --kr-accent-strong: #6d28d9;
+  --kr-accent-hover: #5b21b6;
+  --kr-lavender: #6d28d9;
+  --kr-keyword: #8a2fc4;
+  --kr-func: #4f46e5;
+  --kr-blue: #0369a1;
+  --kr-teal: #0f766e;
+  --kr-green: #137336;
+  --kr-yellow: #8f5806;
+  --kr-peach: #b23c0b;
+  --kr-pink: #be185d;
+  --kr-magenta: #a21caf;
+  --kr-red: #c81e3a;
+
+  --color-red-rgb: 200, 30, 58;
+  --color-orange-rgb: 178, 60, 11;
+  --color-yellow-rgb: 143, 88, 6;
+  --color-green-rgb: 19, 115, 54;
+  --color-cyan-rgb: 15, 118, 110;
+  --color-blue-rgb: 3, 105, 161;
+  --color-purple-rgb: 124, 58, 237;
+  --color-pink-rgb: 190, 24, 93;
+
+  --color-base-05: var(--kr-bg);
+
+  --accent-h: 262;
+  --accent-s: 83%;
+  --accent-l: 58%;
+  --color-accent-1: var(--kr-accent-strong);
+  --color-accent-2: var(--kr-accent-hover);
+
+  --background-primary-alt: var(--kr-bg-dark);
+  --background-secondary-alt: var(--kr-bg-float);
+  --background-modifier-hover: color-mix(in srgb, var(--kr-accent) 7%, transparent);
+  --background-modifier-active-hover: color-mix(in srgb, var(--kr-accent) 14%, transparent);
+  --background-modifier-form-field: var(--kr-bg-darkest);
+  --menu-background: var(--kr-bg);
+
+  --text-accent-hover: var(--kr-accent-hover);
+  --text-selection: color-mix(in srgb, var(--kr-accent) 20%, transparent);
+  --text-highlight-bg: rgba(250, 204, 21, 0.35);
+  --interactive-normal: var(--kr-bg-darkest);
+  --interactive-hover: var(--kr-bg-float);
+
+  --bold-color: var(--kr-pink);
+  --italic-color: #1d4ed8;
+  --link-color-hover: var(--kr-accent-hover);
+  --tag-color: var(--kr-accent-strong);
+  --tag-background: color-mix(in srgb, var(--kr-accent) 10%, transparent);
+  --tag-background-hover: color-mix(in srgb, var(--kr-accent) 16%, transparent);
+  --blockquote-border-color: var(--kr-accent);
+
+  --graph-line: #b7a6dc;
+
+  --scrollbar-thumb-bg: rgba(109, 40, 217, 0.22);
+  --scrollbar-active-thumb-bg: rgba(109, 40, 217, 0.38);
+}
+
+.theme-light ::selection {
+  background: color-mix(in srgb, var(--kr-accent) 20%, transparent);
+}
+
+.theme-light code[class*="language-toml"] .token.table { color: var(--kr-keyword); font-weight: bold; }
+.theme-light code[class*="language-toml"] .token.key { color: var(--kr-blue); }
+.theme-light code[class*="language-toml"] .token.string { color: var(--kr-teal); }
+.theme-light code[class*="language-toml"] .token.number { color: var(--kr-yellow); }
+.theme-light code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
+.theme-light code[class*="language-toml"] .token.date { color: var(--kr-green); }
+.theme-light code[class*="language-toml"] .token.punctuation { color: var(--kr-fg-dark); }
+
+/* ---------- Mobile ---------- */
+.is-mobile {
+  --input-height: 40px;
+}
+
+.is-mobile .tree-item-self {
+  min-height: 40px;
+  align-items: center;
+}
+
+/* Wide tables scroll sideways instead of being clipped (reading view) */
+.is-mobile .markdown-preview-view table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.is-phone {
+  --h1-size: 1.7em;
+  --h2-size: 1.4em;
+  --h3-size: 1.2em;
+  --h4-size: 1.1em;
+  --h5-size: 1em;
+  --h6-size: 0.9em;
 }
