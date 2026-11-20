@@ -165,3 +165,59 @@
 .theme-dark code[class*="language-toml"] .token.boolean { color: var(--kr-pink); font-style: italic; }
 .theme-dark code[class*="language-toml"] .token.date { color: #5dd8a8; }
 .theme-dark code[class*="language-toml"] .token.punctuation { color: #8870aa; }
+
+/* ---------- Workspace polish ---------- */
+/* Opt-in body classes: kr-dim-inactive, kr-rainbow-folders */
+
+/* Active line, only while the editor has focus */
+.theme-dark .cm-editor.cm-focused .cm-line.cm-active {
+  background-color: rgba(167, 139, 250, 0.06);
+  box-shadow: inset 2px 0 0 rgba(167, 139, 250, 0.35);
+}
+
+/* Tabs */
+.theme-dark {
+  --tab-background-active: var(--kr-bg);
+  --tab-text-color: var(--kr-muted);
+  --tab-text-color-active: var(--kr-fg-dark);
+  --tab-text-color-focused: var(--kr-fg-dark);
+  --tab-text-color-focused-active: var(--kr-fg);
+  --tab-text-color-focused-active-current: var(--kr-fg);
+  --tab-text-color-focused-highlighted: var(--kr-lavender);
+  --tab-divider-color: var(--kr-border);
+  --tab-outline-color: var(--kr-border);
+}
+.theme-dark .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
+  background-color: var(--background-modifier-hover);
+  color: var(--kr-fg-mid);
+}
+.theme-dark .workspace-tab-header.is-active .workspace-tab-header-inner {
+  box-shadow: inset 0 2px 0 var(--kr-border-strong);
+}
+.theme-dark .workspace-tabs.mod-active .workspace-tab-header.is-active .workspace-tab-header-inner {
+  box-shadow: inset 0 2px 0 var(--kr-accent);
+}
+
+/* Dim inactive panes (main area only; skipped while a sidebar has focus) */
+.theme-dark.kr-dim-inactive .workspace-split.mod-root .workspace-leaf-content {
+  transition: opacity 150ms ease-in-out;
+}
+.theme-dark.kr-dim-inactive .workspace-split.mod-root:has(.workspace-leaf.mod-active) .workspace-leaf:not(.mod-active) .workspace-leaf-content {
+  opacity: 0.75;
+}
+
+/* Rainbow folders: top-level folders cycle through the palette */
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+1) { --kr-folder-color: var(--kr-red); }
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+2) { --kr-folder-color: var(--kr-peach); }
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+3) { --kr-folder-color: var(--kr-yellow); }
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+4) { --kr-folder-color: var(--kr-green); }
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+5) { --kr-folder-color: var(--kr-teal); }
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+6) { --kr-folder-color: var(--kr-blue); }
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+7) { --kr-folder-color: var(--kr-accent); }
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder:nth-child(8n+8) { --kr-folder-color: var(--kr-pink); }
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title {
+  color: var(--kr-folder-color);
+}
+.theme-dark.kr-rainbow-folders .nav-files-container > div > .tree-item.nav-folder > .tree-item-children {
+  --nav-indentation-guide-color: var(--kr-folder-color);
+}
