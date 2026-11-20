@@ -1,8 +1,24 @@
 {
+  "extends": "stylelint-config-obsidianmd",
   "rules": {
-    "block-no-empty": true,
-    "color-no-invalid-hex": true,
-    "declaration-block-no-duplicate-properties": true,
-    "no-invalid-double-slash-comments": true
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "severity": "warning",
+        "browsers": ["electron >= 25"],
+        "ignore": ["css-nesting", "css-cascade-layers"]
+      }
+    ],
+    "alpha-value-notation": null,
+    "color-function-alias-notation": null,
+    "color-function-notation": null,
+    "color-hex-length": null,
+    "comment-empty-line-before": null,
+    "custom-property-empty-line-before": null,
+    "declaration-block-single-line-max-declarations": null,
+    "no-descending-specificity": null,
+    "property-no-vendor-prefix": null,
+    "rule-empty-line-before": null,
+    "selector-class-pattern": null
   }
 }

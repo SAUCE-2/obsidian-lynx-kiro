@@ -24,10 +24,11 @@ PR titles must follow [Conventional Commits](https://www.conventionalcommits.org
 
 Commits inside your branch can be named anything.
 
-CI lints `theme.css` and checks `manifest.json`. To run the lint locally:
+CI lints `theme.css` with Obsidian's theme-review rules ([stylelint-config-obsidianmd](https://github.com/obsidianmd/stylelint-config), targeting Obsidian 1.4.5's Chromium) and checks `manifest.json`. Warnings fail the build. To run the lint locally:
 
 ```sh
-npx stylelint@16 theme.css
+npm install
+npm run lint
 ```
 
 ## Releases

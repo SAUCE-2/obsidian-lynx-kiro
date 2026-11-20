@@ -384,10 +384,10 @@ settings:
 :is(.theme-dark, .theme-light).lynx-accent-blue,
 :is(.theme-dark, .theme-light).lynx-accent-custom {
   --kr-accent: var(--lynx-accent);
-  --kr-accent-strong: color-mix(in srgb, var(--lynx-accent) 60%, black);
-  --kr-accent-hover: color-mix(in srgb, var(--lynx-accent) 80%, black);
-  --kr-lavender: color-mix(in srgb, var(--lynx-accent) 70%, white);
-  --color-accent-2: color-mix(in srgb, var(--lynx-accent) 50%, white);
+  --kr-accent-strong: color-mix(in srgb, var(--lynx-accent) 60%, #000);
+  --kr-accent-hover: color-mix(in srgb, var(--lynx-accent) 80%, #000);
+  --kr-lavender: color-mix(in srgb, var(--lynx-accent) 70%, #fff);
+  --color-accent-2: color-mix(in srgb, var(--lynx-accent) 50%, #fff);
   --background-modifier-hover: color-mix(in srgb, var(--lynx-accent) 8%, transparent);
   --background-modifier-active-hover: color-mix(in srgb, var(--lynx-accent) 16%, transparent);
   --tag-background: color-mix(in srgb, var(--lynx-accent) 12%, transparent);
@@ -408,7 +408,7 @@ settings:
 /* Background contrast. Each override is built only from palette vars it doesn't change. */
 :is(.theme-dark, .theme-light).lynx-bg-darker {
   --kr-bg: var(--kr-bg-darkest);
-  --kr-bg-dark: color-mix(in srgb, var(--kr-bg-darkest) 70%, black);
+  --kr-bg-dark: color-mix(in srgb, var(--kr-bg-darkest) 70%, #000);
   --kr-bg-float: color-mix(in srgb, var(--kr-bg-highlight) 40%, var(--kr-bg-darkest));
   --color-base-00: var(--kr-bg-dark);
   --background-secondary-alt: var(--kr-bg-dark);
@@ -477,11 +477,11 @@ settings:
   box-shadow: inset 0 2px 0 var(--kr-accent);
 }
 
-/* Dim inactive panes (main area only; skipped while a sidebar has focus) */
+/* Dim inactive panes (main area only) */
 :is(.theme-dark, .theme-light).lynx-dim-inactive .workspace-split.mod-root .workspace-leaf-content {
   transition: opacity 150ms ease-in-out;
 }
-:is(.theme-dark, .theme-light).lynx-dim-inactive .workspace-split.mod-root:has(.workspace-leaf.mod-active) .workspace-leaf:not(.mod-active) .workspace-leaf-content {
+:is(.theme-dark, .theme-light).lynx-dim-inactive .workspace-split.mod-root .workspace-leaf:not(.mod-active) .workspace-leaf-content {
   opacity: 0.75;
 }
 
@@ -501,12 +501,14 @@ settings:
 
 :is(.theme-dark, .theme-light) :is(input:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]), li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input, li:is([data-task="x"], [data-task="X"], [data-task="/"], [data-task="-"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input).task-list-item-checkbox:checked::after {
   background-color: var(--kr-bg-darkest);
+  /* stylelint-disable plugin/no-unsupported-browser-features -- older Chromium is only "partial" because it needs the -webkit- prefix, which is here */
   -webkit-mask-image: var(--kr-task-icon);
   mask-image: var(--kr-task-icon);
   -webkit-mask-size: 80%;
   mask-size: 80%;
   -webkit-mask-position: center;
   mask-position: center;
+  /* stylelint-enable plugin/no-unsupported-browser-features */
 }
 
 :is(.theme-dark, .theme-light) .markdown-rendered li.task-list-item.is-checked:is([data-task="/"], [data-task=">"], [data-task="<"], [data-task="?"], [data-task="!"], [data-task="*"], [data-task='"'], [data-task="l"], [data-task="b"], [data-task="i"], [data-task="S"], [data-task="I"], [data-task="p"], [data-task="c"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]),
@@ -815,6 +817,7 @@ settings:
   right: 0.75em;
   overflow: hidden;
   white-space: nowrap;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- "partial" only covers the hanging/each-line keywords */
   text-indent: -9ch;
   font-family: var(--font-monospace);
   font-size: var(--font-smallest);
@@ -897,24 +900,23 @@ settings:
   white-space: nowrap;
 }
 
-/* img-grid: images in the same paragraph (reading view) or line (live preview) form a grid */
-:is(.theme-dark, .theme-light) .markdown-preview-view.img-grid p:has(> :is(img, .image-embed) ~ :is(img, .image-embed)),
-:is(.theme-dark, .theme-light) .markdown-source-view.img-grid .cm-line:has(> .image-embed ~ .image-embed) {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: var(--size-4-2);
-  align-items: start;
-}
-:is(.theme-dark, .theme-light) .markdown-preview-view.img-grid p:has(> :is(img, .image-embed) ~ :is(img, .image-embed)) > br {
-  display: none;
-}
-:is(.theme-dark, .theme-light) .markdown-source-view.img-grid .cm-line:has(> .image-embed ~ .image-embed) > .cm-widgetBuffer {
-  position: absolute;
-}
-:is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).img-grid :is(p, .cm-line) > :is(img, .image-embed),
+/* img-grid: images that share a paragraph (reading view) or line (live preview)
+   sit two per row; a lone image keeps the full width */
+:is(.theme-dark, .theme-light) .markdown-preview-view.img-grid p > img,
+:is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).img-grid :is(p, .cm-line) > .image-embed,
 :is(.theme-dark, .theme-light) :is(.markdown-source-view, .markdown-preview-view).img-grid :is(p, .cm-line) > .image-embed img {
   width: 100%;
   margin: 0;
+}
+:is(.theme-dark, .theme-light) .markdown-preview-view.img-grid p > :is(img, .image-embed):not(:only-of-type),
+:is(.theme-dark, .theme-light) .markdown-source-view.img-grid .cm-line > .image-embed:not(:only-of-type) {
+  display: inline-block;
+  width: calc(50% - var(--size-4-2));
+  margin: 0 var(--size-4-1) var(--size-4-2) 0;
+  vertical-align: top;
+}
+:is(.theme-dark, .theme-light) .markdown-preview-view.img-grid p > :is(img, .image-embed):not(:only-of-type) + br {
+  display: none;
 }
 
 /* cards: Dataview TABLE results (both views) and plain tables (reading view only, so
