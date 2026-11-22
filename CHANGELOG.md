@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.3](https://github.com/SAUCE-2/obsidian-lynx-kiro/compare/1.2.2...1.2.3) (2026-11-22)
+
+
+### Bug Fixes
+
+* drop the accent bar on the active tab ([af0cc48](https://github.com/SAUCE-2/obsidian-lynx-kiro/commit/af0cc484666c15f1d710a46bc5076d6c96a5b46d))
+* drop the accent bar on the active tab ([92fc9e2](https://github.com/SAUCE-2/obsidian-lynx-kiro/commit/92fc9e25db444c15b25677555306684d1ffae320))
+
 ## [1.2.2](https://github.com/SAUCE-2/obsidian-lynx-kiro/compare/1.2.1...1.2.2) (2026-11-20)
 
 

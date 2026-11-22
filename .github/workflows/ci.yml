@@ -26,10 +26,12 @@ jobs:
           ' manifest.json
 
       # release-please owns the version; a hand edit would desync it from
-      # CHANGELOG.md and .release-please-manifest.json.
+      # CHANGELOG.md and .release-please-manifest.json. Only PRs into main are
+      # checked: syncing dev after a release legitimately carries the bump.
       - name: Check version isn't bumped by hand
         if: >-
           github.event_name == 'pull_request' &&
+          github.base_ref == 'main' &&
           !(startsWith(github.head_ref, 'release-please--') &&
             github.event.pull_request.head.repo.full_name == github.repository)
         env:
