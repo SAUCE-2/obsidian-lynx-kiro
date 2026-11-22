@@ -470,12 +470,6 @@ settings:
   background-color: var(--background-modifier-hover);
   color: var(--kr-fg-mid);
 }
-:is(.theme-dark, .theme-light) .workspace-tab-header.is-active .workspace-tab-header-inner {
-  box-shadow: inset 0 2px 0 var(--kr-border-strong);
-}
-:is(.theme-dark, .theme-light) .workspace-tabs.mod-active .workspace-tab-header.is-active .workspace-tab-header-inner {
-  box-shadow: inset 0 2px 0 var(--kr-accent);
-}
 
 /* Dim inactive panes (main area only) */
 :is(.theme-dark, .theme-light).lynx-dim-inactive .workspace-split.mod-root .workspace-leaf-content {
