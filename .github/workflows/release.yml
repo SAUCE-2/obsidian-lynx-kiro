@@ -1,11 +1,15 @@
 name: Release
 
-# release-please keeps a "release X.Y.Z" PR open that bumps manifest.json and
-# CHANGELOG.md from the conventional commits on main. Merging that PR tags
-# X.Y.Z and publishes the release Obsidian installs from.
+# All work lands on dev. release-please keeps a "release X.Y.Z" PR open against
+# dev that bumps manifest.json and CHANGELOG.md from the conventional commits
+# since the last release. Merging that PR tags X.Y.Z, publishes the release
+# Obsidian installs from, and fast-forwards main to the release commit, so
+# main and dev share one linear history.
 on:
   push:
-    branches: [main]
+    branches: [dev]
+  # Fast-forwards main to dev without a release (e.g. docs-only changes).
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,10 +18,16 @@ permissions:
 
 jobs:
   release-please:
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.rp.outputs.release_created }}
+      sha: ${{ steps.rp.outputs.sha }}
     steps:
       - uses: googleapis/release-please-action@v5
         id: rp
+        with:
+          target-branch: dev
 
       - uses: actions/checkout@v7
         if: steps.rp.outputs.release_created
@@ -37,3 +47,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ fromJSON(steps.rp.outputs.pr || '{}').headBranchName }}
         run: gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref "$BRANCH"
+
+  fast-forward-main:
+    needs: release-please
+    if: needs.release-please.outputs.release_created || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      # GITHUB_TOKEN can't bypass the "Protect main" ruleset; this deploy key can.
+      - uses: actions/checkout@v7
+        with:
+          ref: dev
+          fetch-depth: 0
+          ssh-key: ${{ secrets.MAIN_DEPLOY_KEY }}
+
+      # A plain push only fast-forwards: if main ever has commits dev lacks,
+      # this fails instead of rewriting main.
+      - name: Fast-forward main
+        env:
+          SHA: ${{ needs.release-please.outputs.sha || github.sha }}
+        run: git push origin "$SHA:refs/heads/main"
