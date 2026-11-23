@@ -7,9 +7,9 @@ Thanks for helping out. Bug reports, fixes, and plugin support are all welcome.
 1. Fork the repo and create a branch.
 2. Edit `theme.css`. Colors live as `--kr-*` variables at the top; reuse them instead of adding new hex values.
 3. Test it: copy `theme.css` and `manifest.json` into `<vault>/.obsidian/themes/Lynx Kiro/` and check it in Obsidian (dark and light mode).
-4. Open a pull request against `main` with before/after screenshots for any visual change.
+4. Open a pull request against `dev` with before/after screenshots for any visual change.
 
-`main` is the trunk: keep branches short-lived and PRs small. PRs are squash-merged, so the PR title becomes the commit on `main`.
+`dev` is the trunk: keep branches short-lived and PRs small. PRs are squash-merged, so the PR title becomes the commit on `dev`. `main` only ever fast-forwards to the latest release.
 
 ## PR titles
 
@@ -33,7 +33,7 @@ npm run lint
 
 ## Releases
 
-Don't bump `version` in `manifest.json` yourself. [release-please](https://github.com/googleapis/release-please) keeps a `chore(main): release X.Y.Z` PR open that bumps `manifest.json` and `CHANGELOG.md` from the PR titles merged since the last release. Merging that PR tags `X.Y.Z` and publishes a GitHub release with `theme.css` and `manifest.json` attached, which is what Obsidian installs from.
+Don't bump `version` in `manifest.json` yourself. [release-please](https://github.com/googleapis/release-please) keeps a `chore: release X.Y.Z` PR open against `dev` that bumps `manifest.json` and `CHANGELOG.md` from the PR titles merged since the last release. Merging that PR tags `X.Y.Z` and publishes a GitHub release with `theme.css` and `manifest.json` attached (what Obsidian installs from), then fast-forwards `main` to the release commit.
 
 Versions follow [semver](https://semver.org) as plain `MAJOR.MINOR.PATCH` (no `v` prefix; Obsidian matches the release tag to the version exactly). Your PR title decides the bump:
 

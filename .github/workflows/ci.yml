@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
   push:
-    branches: [main]
+    branches: [dev]
   workflow_dispatch:
 
 permissions:
@@ -26,12 +26,11 @@ jobs:
           ' manifest.json
 
       # release-please owns the version; a hand edit would desync it from
-      # CHANGELOG.md and .release-please-manifest.json. Only PRs into main are
-      # checked: syncing dev after a release legitimately carries the bump.
+      # CHANGELOG.md and .release-please-manifest.json. Release PRs are exempt.
       - name: Check version isn't bumped by hand
         if: >-
           github.event_name == 'pull_request' &&
-          github.base_ref == 'main' &&
+          github.base_ref == 'dev' &&
           !(startsWith(github.head_ref, 'release-please--') &&
             github.event.pull_request.head.repo.full_name == github.repository)
         env:
