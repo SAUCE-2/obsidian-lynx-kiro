@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/SAUCE-2/obsidian-lynx-kiro/compare/1.2.3...1.2.4) (2026-11-23)
+
+
+### Bug Fixes
+
+* show heading labels in full when readable line length is off ([#37](https://github.com/SAUCE-2/obsidian-lynx-kiro/issues/37)) ([7505e97](https://github.com/SAUCE-2/obsidian-lynx-kiro/commit/7505e970e4661723e7b455c024bbf417b516c535))
+
 ## [1.2.3](https://github.com/SAUCE-2/obsidian-lynx-kiro/compare/1.2.2...1.2.3) (2026-11-22)
 
 
