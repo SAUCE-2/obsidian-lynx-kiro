@@ -448,12 +448,6 @@ settings:
 /* ---------- Workspace polish ---------- */
 /* Opt-in body class: lynx-dim-inactive */
 
-/* Active line, only while the editor has focus */
-:is(.theme-dark, .theme-light) .cm-editor.cm-focused .cm-line.cm-active {
-  background-color: color-mix(in srgb, var(--kr-accent) 6%, transparent);
-  box-shadow: inset 2px 0 0 color-mix(in srgb, var(--kr-accent) 35%, transparent);
-}
-
 /* Tabs */
 :is(.theme-dark, .theme-light) {
   --tab-background-active: var(--kr-bg);
@@ -800,6 +794,23 @@ settings:
 :is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-5::before { content: "H5"; }
 :is(.theme-dark, .theme-light) .markdown-preview-sizer > .el-h6 > h6::before,
 :is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header-6::before { content: "H6"; }
+
+/* Room the labels need left of the text: label (2.5em at --font-ui-smaller) plus
+   the 26px fold arrow slot, plus a 4px gap. */
+:is(.theme-dark, .theme-light) {
+  --lynx-heading-label-room: calc(2.5 * var(--font-ui-smaller) + 30px);
+}
+/* Readable line length off (or the "wide" cssclass): the page margin alone is too
+   narrow, so the labels got clipped to a bare "1", "2"... Widen the left margin. */
+:is(.theme-dark, .theme-light) .markdown-preview-view:is(:not(.is-readable-line-width), .wide) > .markdown-preview-sizer,
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview:is(:not(.is-readable-line-width), .wide) .cm-sizer {
+  padding-inline-start: max(0px, var(--lynx-heading-label-room) - var(--file-margins-x));
+}
+/* Line numbers on: the gutter sits right next to the text, so the labels landed
+   on top of it. Push the gutter out past the labels. */
+:is(.theme-dark, .theme-light) .markdown-source-view.mod-cm6.is-live-preview .cm-gutters {
+  margin-inline-end: var(--lynx-heading-label-room);
+}
 
 /* ---------- Code blocks & inline code ---------- */
 /* Reading view: rounded block with a subtle border */
